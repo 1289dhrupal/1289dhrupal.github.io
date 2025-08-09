@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dhrupal Shah - Portfolio</title>
@@ -8,1421 +9,1190 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
     <style>
-      :root {
-        --reveal-distance: 16px;
-        --reveal-duration: 0.65s;
-        --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
-        --stagger: 60ms; /* per item */
-      }
-
-      body {
-        font-family: "Inter", sans-serif;
-        position: relative;
-        min-height: 100vh;
-        background: radial-gradient(
-            1200px 600px at 20% 10%,
-            rgba(99, 102, 241, 0.15),
-            transparent 60%
-          ),
-          radial-gradient(
-            800px 500px at 80% 0%,
-            rgba(16, 185, 129, 0.08),
-            transparent 60%
-          ),
-          radial-gradient(
-            900px 600px at 50% 100%,
-            rgba(99, 102, 241, 0.12),
-            transparent 60%
-          ),
-          #0f172a;
-        background-attachment: fixed;
-        animation: bg-move 30s ease-in-out infinite alternate;
-      }
-
-      @keyframes bg-move {
-        0% {
-          background-position: 0px 0px, 0px 0px, 0px 0px, 0 0;
+        :root {
+            --reveal-distance: 16px;
+            --reveal-duration: 0.65s;
+            --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+            --stagger: 60ms;
+            /* per item */
         }
 
-        100% {
-          background-position: -60px -40px, 40px -30px, 0px 40px, 0 0;
-        }
-      }
-
-      /* Subtle nav link underline */
-      .nav-link {
-        background-image: linear-gradient(currentColor, currentColor);
-        background-position: 0% 100%;
-        background-repeat: no-repeat;
-        background-size: 0% 2px;
-        transition: background-size 0.25s ease;
-      }
-
-      .nav-link:hover {
-        background-size: 100% 2px;
-      }
-
-      /* Active section highlight */
-      .nav-link.active {
-        color: #a5b4fc; /* indigo-300 */
-        background-size: 100% 2px; /* keep underline filled */
-      }
-
-      /* Slightly bolder on hover while active */
-      .nav-link.active:hover {
-        color: #c7d2fe;
-      }
-
-      /* (Optional) active dot for desktop */
-      @media (min-width: 768px) {
-        .nav-link.active::after {
-          content: "";
-          display: inline-block;
-          width: 0.4rem;
-          height: 0.4rem;
-          margin-left: 0.4rem;
-          border-radius: 9999px;
-          background: currentColor;
-          vertical-align: middle;
-        }
-      }
-
-      /* Cards hover polish */
-      .card-hover {
-        transition: transform 0.35s var(--reveal-ease), box-shadow 0.35s ease,
-          outline-color 0.35s ease;
-      }
-
-      .card-hover:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25),
-          0 0 0 1px rgba(99, 102, 241, 0.12) inset;
-        outline: 1px solid rgba(99, 102, 241, 0.18);
-        outline-offset: -1px;
-      }
-
-      /* Scroll reveal */
-      .reveal {
-        opacity: 0;
-        transform: translateY(var(--reveal-distance)) scale(0.98);
-        will-change: transform, opacity;
-      }
-
-      .reveal.show {
-        opacity: 1;
-        transform: none;
-        transition: transform var(--reveal-duration) var(--reveal-ease),
-          opacity calc(var(--reveal-duration) * 0.85) ease;
-        transition-delay: var(--delay, 0ms);
-      }
-
-      /* Stagger helpers */
-      [data-stagger] > .reveal {
-        /* immediate children only */
-        --delay: calc(var(--index, 0) * var(--stagger));
-      }
-
-      /* Skill tag micro-interaction */
-      .skill-tag {
-        transition: transform 0.18s ease, box-shadow 0.18s ease,
-          background-color 0.3s ease;
-      }
-
-      .skill-tag:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
-      }
-
-      /* Mobile menu slide */
-      #mobile-menu {
-        max-height: 0;
-        opacity: 0;
-        transform: translateY(-8px);
-        overflow: hidden;
-        transition: max-height 0.4s ease, opacity 0.3s ease, transform 0.3s ease;
-      }
-
-      #mobile-menu.open {
-        max-height: 420px;
-        opacity: 1;
-        transform: none;
-      }
-
-      /* Contact button gentle pulse */
-      .btn-pulse {
-        position: relative;
-        isolation: isolate;
-      }
-
-      .btn-pulse::after {
-        content: "";
-        position: absolute;
-        inset: -2px;
-        border-radius: 0.6rem;
-        opacity: 0;
-        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.45);
-        transition: opacity 0.25s ease;
-        z-index: -1;
-      }
-
-      .btn-pulse:hover::after {
-        animation: pulse-shadow 1.8s ease infinite;
-        opacity: 1;
-      }
-
-      @keyframes pulse-shadow {
-        0% {
-          box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.45);
+        body {
+            font-family: "Inter", sans-serif;
+            position: relative;
+            min-height: 100vh;
+            background: radial-gradient(1200px 600px at 20% 10%,
+                    rgba(99, 102, 241, 0.15),
+                    transparent 60%),
+                radial-gradient(800px 500px at 80% 0%,
+                    rgba(16, 185, 129, 0.08),
+                    transparent 60%),
+                radial-gradient(900px 600px at 50% 100%,
+                    rgba(99, 102, 241, 0.12),
+                    transparent 60%),
+                #0f172a;
+            background-attachment: fixed;
+            animation: bg-move 30s ease-in-out infinite alternate;
         }
 
-        100% {
-          box-shadow: 0 0 0 18px rgba(99, 102, 241, 0);
-        }
-      }
+        @keyframes bg-move {
+            0% {
+                background-position: 0px 0px, 0px 0px, 0px 0px, 0 0;
+            }
 
-      /* Respect reduced motion */
-      @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          animation: none !important;
-          transition-duration: 0.01ms !important;
-          scroll-behavior: auto !important;
+            100% {
+                background-position: -60px -40px, 40px -30px, 0px 40px, 0 0;
+            }
         }
 
+        /* Subtle nav link underline */
+        .nav-link {
+            background-image: linear-gradient(currentColor, currentColor);
+            background-position: 0% 100%;
+            background-repeat: no-repeat;
+            background-size: 0% 2px;
+            transition: background-size 0.25s ease;
+        }
+
+        .nav-link:hover {
+            background-size: 100% 2px;
+        }
+
+        /* Active section highlight */
+        .nav-link.active {
+            color: #a5b4fc;
+            /* indigo-300 */
+            background-size: 100% 2px;
+            /* keep underline filled */
+        }
+
+        /* Slightly bolder on hover while active */
+        .nav-link.active:hover {
+            color: #c7d2fe;
+        }
+
+        /* (Optional) active dot for desktop */
+        @media (min-width: 768px) {
+            .nav-link.active::after {
+                content: "";
+                display: inline-block;
+                width: 0.4rem;
+                height: 0.4rem;
+                margin-left: 0.4rem;
+                border-radius: 9999px;
+                background: currentColor;
+                vertical-align: middle;
+            }
+        }
+
+        /* Cards hover polish */
+        .card-hover {
+            transition: transform 0.35s var(--reveal-ease), box-shadow 0.35s ease,
+                outline-color 0.35s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(99, 102, 241, 0.12) inset;
+            outline: 1px solid rgba(99, 102, 241, 0.18);
+            outline-offset: -1px;
+        }
+
+        /* Scroll reveal */
         .reveal {
-          opacity: 1 !important;
-          transform: none !important;
+            opacity: 0;
+            transform: translateY(var(--reveal-distance)) scale(0.98);
+            will-change: transform, opacity;
         }
 
+        .reveal.show {
+            opacity: 1;
+            transform: none;
+            transition: transform var(--reveal-duration) var(--reveal-ease),
+                opacity calc(var(--reveal-duration) * 0.85) ease;
+            transition-delay: var(--delay, 0ms);
+        }
+
+        /* Stagger helpers */
+        [data-stagger]>.reveal {
+            /* immediate children only */
+            --delay: calc(var(--index, 0) * var(--stagger));
+        }
+
+        /* Skill tag micro-interaction */
+        .skill-tag {
+            transition: transform 0.18s ease, box-shadow 0.18s ease,
+                background-color 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+        }
+
+        /* Mobile menu slide */
         #mobile-menu {
-          max-height: none !important;
-          opacity: 1 !important;
-          transform: none !important;
+            max-height: 0;
+            opacity: 0;
+            transform: translateY(-8px);
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease, transform 0.3s ease;
         }
-      }
-    </style>
-  </head>
 
-  <body class="bg-gray-900 text-gray-300">
+        #mobile-menu.open {
+            max-height: 420px;
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Contact button gentle pulse */
+        .btn-pulse {
+            position: relative;
+            isolation: isolate;
+        }
+
+        .btn-pulse::after {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: 0.6rem;
+            opacity: 0;
+            box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.45);
+            transition: opacity 0.25s ease;
+            z-index: -1;
+        }
+
+        .btn-pulse:hover::after {
+            animation: pulse-shadow 1.8s ease infinite;
+            opacity: 1;
+        }
+
+        @keyframes pulse-shadow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.45);
+            }
+
+            100% {
+                box-shadow: 0 0 0 18px rgba(99, 102, 241, 0);
+            }
+        }
+
+        /* Respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            #mobile-menu {
+                max-height: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-gray-300">
     <!-- Header & Navigation -->
     <header
-      class="bg-gray-800/80 backdrop-blur-md sticky top-0 z-50 shadow-lg shadow-indigo-500/10"
-    >
-      <nav
-        class="container mx-auto px-6 py-4 flex justify-between items-center"
-      >
-        <a href="#" class="text-2xl font-bold text-white">Dhrupal Shah</a>
-        <div class="hidden md:flex space-x-8 items-center">
-          <a
-            href="#about"
-            class="nav-link text-gray-400 hover:text-indigo-400 transition"
-            >About</a
-          >
-          <a
-            href="#skills"
-            class="nav-link text-gray-400 hover:text-indigo-400 transition"
-            >Skills</a
-          >
-          <a
-            href="#experience"
-            class="nav-link text-gray-400 hover:text-indigo-400 transition"
-            >Experience</a
-          >
-          <a
-            href="#education"
-            class="nav-link text-gray-400 hover:text-indigo-400 transition"
-            >Education</a
-          >
-          <a
-            href="#projects"
-            class="nav-link text-gray-400 hover:text-indigo-400 transition"
-            >Projects</a
-          >
-          <a
-            href="#achievements"
-            class="nav-link text-gray-400 hover:text-indigo-400 transition"
-            >Achievements & Recognition</a
-          >
-          <a
-            href="#contact"
-            class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition shadow-sm btn-pulse"
-            >Contact</a
-          >
+        class="bg-gray-800/80 backdrop-blur-md sticky top-0 z-50 shadow-lg shadow-indigo-500/10">
+        <nav
+            class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">Dhrupal Shah</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a
+                    href="#about"
+                    class="nav-link text-gray-400 hover:text-indigo-400 transition">About</a>
+                <a
+                    href="#skills"
+                    class="nav-link text-gray-400 hover:text-indigo-400 transition">Skills</a>
+                <a
+                    href="#experience"
+                    class="nav-link text-gray-400 hover:text-indigo-400 transition">Experience</a>
+                <a
+                    href="#education"
+                    class="nav-link text-gray-400 hover:text-indigo-400 transition">Education</a>
+                <a
+                    href="#projects"
+                    class="nav-link text-gray-400 hover:text-indigo-400 transition">Projects</a>
+                <a
+                    href="#achievements"
+                    class="nav-link text-gray-400 hover:text-indigo-400 transition">Achievements & Recognition</a>
+                <a
+                    href="#contact"
+                    class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition shadow-sm btn-pulse">Contact</a>
+            </div>
+            <button
+                id="mobile-menu-button"
+                class="md:hidden text-gray-300 focus:outline-none"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+                aria-label="Toggle menu">
+                <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden px-6 pb-4">
+            <a
+                href="#about"
+                class="block py-2 text-gray-300/90 hover:text-indigo-400">About</a>
+            <a
+                href="#experience"
+                class="block py-2 text-gray-300/90 hover:text-indigo-400">Experience</a>
+            <a
+                href="#skills"
+                class="block py-2 text-gray-300/90 hover:text-indigo-400">Skills</a>
+            <a
+                href="#projects"
+                class="block py-2 text-gray-300/90 hover:text-indigo-400">Projects</a>
+            <a
+                href="#education"
+                class="block py-2 text-gray-300/90 hover:text-indigo-400">Education</a>
+            <a
+                href="#achievements"
+                class="block py-2 text-gray-300/90 hover:text-indigo-400">Achievements & Recognition</a>
+            <a
+                href="#contact"
+                class="block mt-2 bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 text-center">Contact</a>
         </div>
-        <button
-          id="mobile-menu-button"
-          class="md:hidden text-gray-300 focus:outline-none"
-          aria-expanded="false"
-          aria-controls="mobile-menu"
-          aria-label="Toggle menu"
-        >
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16m-7 6h7"
-            ></path>
-          </svg>
-        </button>
-      </nav>
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="md:hidden px-6 pb-4">
-        <a
-          href="#about"
-          class="block py-2 text-gray-300/90 hover:text-indigo-400"
-          >About</a
-        >
-        <a
-          href="#experience"
-          class="block py-2 text-gray-300/90 hover:text-indigo-400"
-          >Experience</a
-        >
-        <a
-          href="#skills"
-          class="block py-2 text-gray-300/90 hover:text-indigo-400"
-          >Skills</a
-        >
-        <a
-          href="#projects"
-          class="block py-2 text-gray-300/90 hover:text-indigo-400"
-          >Projects</a
-        >
-        <a
-          href="#education"
-          class="block py-2 text-gray-300/90 hover:text-indigo-400"
-          >Education</a
-        >
-        <a
-          href="#achievements"
-          class="block py-2 text-gray-300/90 hover:text-indigo-400"
-          >Achievements & Recognition</a
-        >
-        <a
-          href="#contact"
-          class="block mt-2 bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 text-center"
-          >Contact</a
-        >
-      </div>
     </header>
 
     <main class="container mx-auto px-6 py-12 md:py-20">
-      <!-- Hero Section -->
-      <section id="hero" class="text-center mb-20 md:mb-32">
-        <h1 class="reveal text-4xl md:text-6xl font-bold text-white mb-4">
-          Dhrupal Shah
-        </h1>
-        <p
-          class="reveal text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto h-16 md:h-20"
-        >
-          A versatile <strong id="typing-text" class="text-indigo-300"></strong>
-          <span class="sr-only"
-            >— delivering robust, scalable, and seamless software
-            solutions.</span
-          >
-        </p>
-        <p class="reveal text-gray-400 max-w-3xl mx-auto">
-          delivering robust, scalable, and seamless software solutions.
-        </p>
-        <div class="reveal flex justify-center space-x-4 mt-6" data-stagger>
-          <a
-            href="https://github.com/1289dhrupal"
-            target="_blank"
-            class="text-gray-400 hover:text-indigo-400"
-            aria-label="GitHub"
-          >
-            <svg
-              class="w-8 h-8"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 640 640"
-            >
-              <path
-                d="M237.9 461.4C237.9 463.4 235.6 465 232.7 465C229.4 465.3 227.1 463.7 227.1 461.4C227.1 459.4 229.4 457.8 232.3 457.8C235.3 457.5 237.9 459.1 237.9 461.4zM206.8 456.9C206.1 458.9 208.1 461.2 211.1 461.8C213.7 462.8 216.7 461.8 217.3 459.8C217.9 457.8 216 455.5 213 454.6C210.4 453.9 207.5 454.9 206.8 456.9zM251 455.2C248.1 455.9 246.1 457.8 246.4 460.1C246.7 462.1 249.3 463.4 252.3 462.7C255.2 462 257.2 460.1 256.9 458.1C256.6 456.2 253.9 454.9 251 455.2zM316.8 72C178.1 72 72 177.3 72 316C72 426.9 141.8 521.8 241.5 555.2C254.3 557.5 258.8 549.6 258.8 543.1C258.8 536.9 258.5 502.7 258.5 481.7C258.5 481.7 188.5 496.7 173.8 451.9C173.8 451.9 162.4 422.8 146 415.3C146 415.3 123.1 399.6 147.6 399.9C147.6 399.9 172.5 401.9 186.2 425.7C208.1 464.3 244.8 453.2 259.1 446.6C261.4 430.6 267.9 419.5 275.1 412.9C219.2 406.7 162.8 398.6 162.8 302.4C162.8 274.9 170.4 261.1 186.4 243.5C183.8 237 175.3 210.2 189 175.6C209.9 169.1 258 202.6 258 202.6C278 197 299.5 194.1 320.8 194.1C342.1 194.1 363.6 197 383.6 202.6C383.6 202.6 431.7 169 452.6 175.6C466.3 210.3 457.8 237 455.2 243.5C471.2 261.2 481 275 481 302.4C481 398.9 422.1 406.6 366.2 412.9C375.4 420.8 383.2 435.8 383.2 459.3C383.2 493 382.9 534.7 382.9 542.9C382.9 549.4 387.5 557.3 400.2 555C500.2 521.8 568 426.9 568 316C568 177.3 455.5 72 316.8 72zM169.2 416.9C167.9 417.9 168.2 420.2 169.9 422.1C171.5 423.7 173.8 424.4 175.1 423.1C176.4 422.1 176.1 419.8 174.4 417.9C172.8 416.3 170.5 415.6 169.2 416.9zM158.4 408.8C157.7 410.1 158.7 411.7 160.7 412.7C162.3 413.7 164.3 413.4 165 412C165.7 410.7 164.7 409.1 162.7 408.1C160.7 407.5 159.1 407.8 158.4 408.8zM190.8 444.4C189.2 445.7 189.8 448.7 192.1 450.6C194.4 452.9 197.3 453.2 198.6 451.6C199.9 450.3 199.3 447.3 197.3 445.4C195.1 443.1 192.1 442.8 190.8 444.4zM179.4 429.7C177.8 430.7 177.8 433.3 179.4 435.6C181 437.9 183.7 438.9 185 437.9C186.6 436.6 186.6 434 185 431.7C183.6 429.4 181 428.4 179.4 429.7z"
-              />
-            </svg>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/dhrupal-shah/"
-            target="_blank"
-            class="text-gray-400 hover:text-indigo-400"
-            aria-label="LinkedIn"
-          >
-            <svg
-              class="w-8 h-8"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 640 640"
-            >
-              <path
-                d="M160 96C124.7 96 96 124.7 96 160L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 160C544 124.7 515.3 96 480 96L160 96zM165 266.2L231.5 266.2L231.5 480L165 480L165 266.2zM236.7 198.5C236.7 219.8 219.5 237 198.2 237C176.9 237 159.7 219.8 159.7 198.5C159.7 177.2 176.9 160 198.2 160C219.5 160 236.7 177.2 236.7 198.5zM413.9 480L413.9 376C413.9 351.2 413.4 319.3 379.4 319.3C344.8 319.3 339.5 346.3 339.5 374.2L339.5 480L273.1 480L273.1 266.2L336.8 266.2L336.8 295.4L337.7 295.4C346.6 278.6 368.3 260.9 400.6 260.9C467.8 260.9 480.3 305.2 480.3 362.8L480.3 480L413.9 480z"
-              />
-            </svg>
-          </a>
-          <a
-            href="https://www.hackerrank.com/profile/1289dhrupal"
-            target="_blank"
-            class="text-gray-400 hover:text-indigo-400"
-            aria-label="HackerRank"
-          >
-            <svg
-              class="w-8 h-8"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 640 640"
-            >
-              <path
-                d="M541.9 192C527.4 167 349.5 64 320.5 64C291.5 64 113.6 166.8 99.2 192C84.8 217.2 84.7 422.8 99.2 448C113.7 473.2 291.6 576 320.5 576C349.4 576 527.3 473.1 541.8 448C556.3 422.9 556.3 217 541.8 192zM380.5 478.2C376.5 478.2 339.6 442.4 342.5 439.5C343.4 438.6 348.8 438 360 437.7C360 411.5 360.6 369.1 360.9 351.4C360.9 349.4 360.5 348 360.5 345.6L280.6 345.6C280.6 352.7 280.1 381.8 282 418.5C282.2 423 280.4 424.5 276.3 424.4C266.2 424.4 256 424.3 245.9 424.3C241.8 424.3 240 422.8 240.2 418.2C241.1 384.8 243.2 334.2 240 205.5L240 202.3C230.3 201.9 223.6 201.3 222.7 200.5C219.8 197.6 257.2 161.8 261.2 161.8C265.2 161.8 302.4 197.6 299.5 200.5C298.6 201.4 291.6 202 282.7 202.3L282.7 205.5C280.3 231.3 280.7 285.1 280.1 310.9L360.4 310.9C360.4 306.3 360.8 276.2 359.2 227.3C359.1 223.9 360.2 222.1 363.4 222.1C374.5 222 385.6 222 396.6 222C400.1 222 401.2 223.7 401.1 227.4C397.4 418.7 400.4 405.3 400.4 437.7C409.3 438.1 417.2 438.7 418.1 439.5C421 442.4 384.5 478.2 380.5 478.2L380.5 478.2z"
-              />
-            </svg>
-          </a>
-        </div>
-      </section>
-
-      <!-- About Me Section -->
-      <section id="about" class="mb-20 md:mb-32 scroll-mt-20">
-        <h2
-          class="reveal text-3xl md:text-4xl font-bold text-white mb-8 text-center"
-        >
-          About Me
-        </h2>
-        <div
-          class="reveal bg-gray-800 p-8 rounded-lg shadow-lg max-w-4xl mx-auto"
-        >
-          <p class="text-lg text-gray-400 leading-relaxed">
-            I am a versatile developer who thrives across the stack—designing
-            APIs, crafting CI/CD pipelines, building intuitive UI components,
-            and mentoring teammates. With a strong grasp of how technologies
-            connect, I deliver scalable, end-to-end systems that are not only
-            robust but also seamless in operation. More than a specialist, I'm a
-            systems thinker and hands-on builder who ensures every piece fits
-            together to create software that just works.
-          </p>
-        </div>
-      </section>
-
-      <!-- Technical Skills Section -->
-      <section id="skills" class="mb-20 md:mb-32 scroll-mt-20">
-        <h2
-          class="reveal text-3xl md:text-4xl font-bold text-white mb-12 text-center"
-        >
-          Technical Skills
-        </h2>
-        <div class="max-w-6xl mx-auto">
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            data-stagger
-          >
-            <!-- Languages -->
-            <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
-              <h3 class="text-xl font-semibold text-white mb-4">Languages</h3>
-              <div class="flex flex-wrap gap-2" data-stagger>
-                <span
-                  class="reveal skill-tag bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >JavaScript</span
-                >
-                <span
-                  class="reveal skill-tag bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >PHP</span
-                >
-                <span
-                  class="reveal skill-tag bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Python</span
-                >
-                <span
-                  class="reveal skill-tag bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >TypeScript</span
-                >
-                <span
-                  class="reveal skill-tag bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Java</span
-                >
-                <span
-                  class="reveal skill-tag bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >HTML</span
-                >
-                <span
-                  class="reveal skill-tag bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >CSS</span
-                >
-                <span
-                  class="reveal skill-tag bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Bash</span
-                >
-              </div>
-            </div>
-            <!-- Frameworks & CMS -->
-            <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
-              <h3 class="text-xl font-semibold text-white mb-4">
-                Frameworks & CMS
-              </h3>
-              <div class="flex flex-wrap gap-2" data-stagger>
-                <span
-                  class="reveal skill-tag bg-green-900/50 text-green-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Laravel</span
-                >
-                <span
-                  class="reveal skill-tag bg-green-900/50 text-green-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Spring Boot</span
-                >
-                <span
-                  class="reveal skill-tag bg-green-900/50 text-green-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >WordPress</span
-                >
-                <span
-                  class="reveal skill-tag bg-green-900/50 text-green-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Vue.js</span
-                >
-                <span
-                  class="reveal skill-tag bg-green-900/50 text-green-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >React.js</span
-                >
-                <span
-                  class="reveal skill-tag bg-green-900/50 text-green-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Node.js</span
-                >
-              </div>
-            </div>
-            <!-- Cloud & APIs -->
-            <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
-              <h3 class="text-xl font-semibold text-white mb-4">
-                Cloud & APIs
-              </h3>
-              <div class="flex flex-wrap gap-2" data-stagger>
-                <span
-                  class="reveal skill-tag bg-yellow-900/50 text-yellow-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >GCP</span
-                >
-                <span
-                  class="reveal skill-tag bg-yellow-900/50 text-yellow-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Google Pub/Sub</span
-                >
-                <span
-                  class="reveal skill-tag bg-yellow-900/50 text-yellow-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Google Ads API</span
-                >
-                <span
-                  class="reveal skill-tag bg-yellow-900/50 text-yellow-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >OpenAI API</span
-                >
-                <span
-                  class="reveal skill-tag bg-yellow-900/50 text-yellow-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Selenium WebDriver</span
-                >
-              </div>
-            </div>
-            <!-- Databases -->
-            <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
-              <h3 class="text-xl font-semibold text-white mb-4">Databases</h3>
-              <div class="flex flex-wrap gap-2" data-stagger>
-                <span
-                  class="reveal skill-tag bg-red-900/50 text-red-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >MySQL</span
-                >
-                <span
-                  class="reveal skill-tag bg-red-900/50 text-red-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >MongoDB</span
-                >
-                <span
-                  class="reveal skill-tag bg-red-900/50 text-red-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Oracle</span
-                >
-                <span
-                  class="reveal skill-tag bg-red-900/50 text-red-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >MSSQL</span
-                >
-                <span
-                  class="reveal skill-tag bg-red-900/50 text-red-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >PostgreSQL</span
-                >
-              </div>
-            </div>
-            <!-- Tools & Platforms -->
-            <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
-              <h3 class="text-xl font-semibold text-white mb-4">
-                Tools & Platforms
-              </h3>
-              <div class="flex flex-wrap gap-2" data-stagger>
-                <span
-                  class="reveal skill-tag bg-purple-900/50 text-purple-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Docker</span
-                >
-                <span
-                  class="reveal skill-tag bg-purple-900/50 text-purple-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Git</span
-                >
-                <span
-                  class="reveal skill-tag bg-purple-900/50 text-purple-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >GitHub Actions</span
-                >
-                <span
-                  class="reveal skill-tag bg-purple-900/50 text-purple-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Jira</span
-                >
-                <span
-                  class="reveal skill-tag bg-purple-900/50 text-purple-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Gitea</span
-                >
-              </div>
-            </div>
-            <!-- Automation & Testing -->
-            <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
-              <h3 class="text-xl font-semibold text-white mb-4">
-                Automation & Testing
-              </h3>
-              <div class="flex flex-wrap gap-2" data-stagger>
-                <span
-                  class="reveal skill-tag bg-teal-900/50 text-teal-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Selenium</span
-                >
-                <span
-                  class="reveal skill-tag bg-teal-900/50 text-teal-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >PHPUnit</span
-                >
-                <span
-                  class="reveal skill-tag bg-teal-900/50 text-teal-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Postman</span
-                >
-                <span
-                  class="reveal skill-tag bg-teal-900/50 text-teal-300 px-3 py-1 rounded-full text-sm font-medium"
-                  >Cron Jobs</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Experience Section -->
-      <section id="experience" class="mb-20 md:mb-32 scroll-mt-20">
-        <h2
-          class="reveal text-3xl md:text-4xl font-bold text-white mb-12 text-center"
-        >
-          Work Experience
-        </h2>
-        <div class="max-w-4xl mx-auto relative border-l-2 border-gray-700">
-          <!-- Experience Item 1 -->
-          <div class="reveal mb-12 ml-6">
-            <span
-              class="absolute flex items-center justify-center w-6 h-6 bg-indigo-600 rounded-full -left-3 ring-8 ring-gray-900"
-            >
-              <svg
-                class="w-3 h-3 text-white"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </span>
-            <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
-              <h3 class="text-xl font-bold text-white">Software Engineer</h3>
-              <p class="text-md font-semibold text-indigo-400 mb-1">
-                Sellergize
-              </p>
-              <time
-                class="block mb-2 text-sm font-normal leading-none text-gray-500"
-                >Mar 2024 - Present</time
-              >
-              <ul class="list-disc list-inside text-gray-400 space-y-2">
-                <li>
-                  Reduced manual workflows by
-                  <strong class="text-indigo-300 font-bold">50%</strong> by
-                  developing a Laravel-based admin panel.
-                </li>
-                <li>
-                  Integrated Google Pub/Sub for scalable data streaming and
-                  Google Ads API for traffic insights.
-                </li>
-                <li>
-                  Led cloud deployments, ensuring smooth go-lives and CI/CD
-                  alignment.
-                </li>
-                <li>
-                  Mentored a team of
-                  <strong class="text-indigo-300 font-bold">4 developers</strong
-                  >, enforcing clean code and secure coding standards.
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- Experience Item 2 -->
-          <div class="reveal mb-12 ml-6">
-            <span
-              class="absolute flex items-center justify-center w-6 h-6 bg-indigo-600 rounded-full -left-3 ring-8 ring-gray-900"
-            >
-              <svg
-                class="w-3 h-3 text-white"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </span>
-            <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
-              <h3 class="text-xl font-bold text-white">Product Engineer</h3>
-              <p class="text-md font-semibold text-indigo-400 mb-1">Seclore</p>
-              <time
-                class="block mb-2 text-sm font-normal leading-none text-gray-500"
-                >Sep 2022 - Sep 2023</time
-              >
-              <ul class="list-disc list-inside text-gray-400 space-y-2">
-                <li>
-                  Improved deployment efficiency by cutting build times from
-                  <strong class="text-indigo-300 font-bold"
-                    >1.5 days to 2 hours</strong
-                  >
-                  with automation scripts.
-                </li>
-                <li>
-                  Reduced client-server implementation time by
-                  <strong class="text-indigo-300 font-bold">40%</strong> by
-                  containerizing applications with Docker.
-                </li>
-                <li>
-                  Conducted rigorous unit testing, resulting in
-                  <strong class="text-indigo-300 font-bold"
-                    >zero critical post-release bugs</strong
-                  >.
-                </li>
-                <li>
-                  Developed a Spring Boot API to return geographical data for IP
-                  addresses.
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- Experience Item 3 -->
-          <div class="reveal ml-6">
-            <span
-              class="absolute flex items-center justify-center w-6 h-6 bg-indigo-600 rounded-full -left-3 ring-8 ring-gray-900"
-            >
-              <svg
-                class="w-3 h-3 text-white"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </span>
-            <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
-              <h3 class="text-xl font-bold text-white">Software Engineer</h3>
-              <p class="text-md font-semibold text-indigo-400 mb-1">
-                Sellergize
-              </p>
-              <time
-                class="block mb-2 text-sm font-normal leading-none text-gray-500"
-                >Aug 2020 - Sep 2022</time
-              >
-              <ul class="list-disc list-inside text-gray-400 space-y-2">
-                <li>
-                  Enhanced user experience by revamping a user panel with
-                  Vue.js, reducing response times by
-                  <strong class="text-indigo-300 font-bold">300%</strong>.
-                </li>
-                <li>
-                  Boosted system efficiency by
-                  <strong class="text-indigo-300 font-bold">20%</strong> by
-                  refactoring critical modules.
-                </li>
-                <li>
-                  Increased sales by
-                  <strong class="text-indigo-300 font-bold">20%</strong> by
-                  building custom WordPress plugins and themes.
-                </li>
-                <li>
-                  Integrated multiple affiliate networks via REST APIs to
-                  improve monetization.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Education Section -->
-      <section id="education" class="mb-20 md:mb-32 scroll-mt-20">
-        <h2
-          class="reveal text-3xl md:text-4xl font-bold text-white mb-12 text-center"
-        >
-          Education
-        </h2>
-        <div class="max-w-4xl mx-auto relative border-l-2 border-gray-700">
-          <!-- Education Item 1 -->
-          <div class="reveal mb-12 ml-6">
-            <span
-              class="absolute flex items-center justify-center w-6 h-6 bg-indigo-600 rounded-full -left-3 ring-8 ring-gray-900"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 640 640"
-                class="w-4 h-4 text-white"
-                fill="currentColor"
-              >
-                <path
-                  d="M80 259.8L289.2 345.9C299 349.9 309.4 352 320 352C330.6 352 341 349.9 350.8 345.9L593.2 246.1C602.2 242.4 608 233.7 608 224C608 214.3 602.2 205.6 593.2 201.9L350.8 102.1C341 98.1 330.6 96 320 96C309.4 96 299 98.1 289.2 102.1L46.8 201.9C37.8 205.6 32 214.3 32 224L32 520C32 533.3 42.7 544 56 544C69.3 544 80 533.3 80 520L80 259.8zM128 331.5L128 448C128 501 214 544 320 544C426 544 512 501 512 448L512 331.4L369.1 390.3C353.5 396.7 336.9 400 320 400C303.1 400 286.5 396.7 270.9 390.3L128 331.4z"
-                />
-              </svg>
-            </span>
-            <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
-              <h3 class="text-xl font-bold text-white">
-                MSc Advanced Computer Science
-              </h3>
-              <p class="text-md font-semibold text-indigo-400 mb-1">
-                University of Leicester
-              </p>
-              <time
-                class="block mb-2 text-sm font-normal leading-none text-gray-500"
-                >Sep 2023 - Nov 2024</time
-              >
-              <p class="text-gray-400">
-                <strong class="text-indigo-300 font-bold"
-                  >Distinction (73%)</strong
-                >
-              </p>
-            </div>
-          </div>
-          <!-- Education Item 2 -->
-          <div class="reveal ml-6">
-            <span
-              class="absolute flex items-center justify-center w-6 h-6 bg-indigo-600 rounded-full -left-3 ring-8 ring-gray-900"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 640 640"
-                class="w-4 h-4 text-white"
-                fill="currentColor"
-              >
-                <path
-                  d="M80 259.8L289.2 345.9C299 349.9 309.4 352 320 352C330.6 352 341 349.9 350.8 345.9L593.2 246.1C602.2 242.4 608 233.7 608 224C608 214.3 602.2 205.6 593.2 201.9L350.8 102.1C341 98.1 330.6 96 320 96C309.4 96 299 98.1 289.2 102.1L46.8 201.9C37.8 205.6 32 214.3 32 224L32 520C32 533.3 42.7 544 56 544C69.3 544 80 533.3 80 520L80 259.8zM128 331.5L128 448C128 501 214 544 320 544C426 544 512 501 512 448L512 331.4L369.1 390.3C353.5 396.7 336.9 400 320 400C303.1 400 286.5 396.7 270.9 390.3L128 331.4z"
-                />
-              </svg>
-            </span>
-            <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
-              <h3 class="text-xl font-bold text-white">
-                Bachelors in Computer Engineering
-              </h3>
-              <p class="text-md font-semibold text-indigo-400 mb-1">
-                Ramrao Adik Institute of Technology
-              </p>
-              <time
-                class="block mb-2 text-sm font-normal leading-none text-gray-500"
-                >Aug 2016 - Oct 2020</time
-              >
-              <p class="text-gray-400">
-                Grade: <strong class="text-indigo-300 font-bold">6.8/10</strong>
-              </p>
-              <ul class="list-disc list-inside text-gray-400 space-y-2 mt-2">
-                <li>
-                  <strong>Activities:</strong> Coder's Club, CSI committee
-                </li>
-                <li>Participated in DMCE Hackathon 2020</li>
-                <li>Event Head for "Dark League" in Techmate 2018</li>
-                <li>Organizer for "Glowball" in Techmate 2017</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Projects Section -->
-      <section id="projects" class="mb-20 md:mb-32 scroll-mt-20">
-        <h2
-          class="reveal text-3xl md:text-4xl font-bold text-white mb-12 text-center"
-        >
-          Projects
-        </h2>
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto"
-          data-stagger
-        >
-          <!-- Project 1 -->
-          <div
-            class="reveal bg-gray-800 rounded-lg shadow-lg overflow-hidden card-hover"
-          >
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-white mb-2">
-                Web-Based Academic Git Repository Monitoring System
-              </h3>
-              <time
-                class="block mb-2 text-sm font-normal leading-none text-gray-500"
-                >Jun 2024 - Sep 2024</time
-              >
-              <p class="text-gray-400 mb-4">
-                An AI-powered tool that integrates GitHub and GitLab APIs to
-                analyse commit quality and inactivity for equitable student
-                evaluation, improving tracking accuracy by
-                <strong class="text-indigo-300 font-bold">50%</strong>.
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm"
-                  >PHP</span
-                >
-                <span
-                  class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm"
-                  >MySQL</span
-                >
-                <span
-                  class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm"
-                  >Vue.js</span
-                >
-                <span
-                  class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm"
-                  >GitHub API</span
-                >
-                <span
-                  class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm"
-                  >OpenAI</span
-                >
-              </div>
-              <div class="mt-4">
-                <a
-                  href="https://github.com/1289dhrupal/msc_project"
-                  target="_blank"
-                  class="text-indigo-400 hover:underline mr-4"
-                  >Backend Repo</a
-                >
-                <a
-                  href="https://github.com/1289dhrupal/msc_project_fe"
-                  target="_blank"
-                  class="text-indigo-400 hover:underline"
-                  >Frontend Repo</a
-                >
-              </div>
-            </div>
-          </div>
-          <!-- Project 2 -->
-          <div
-            class="reveal bg-gray-800 rounded-lg shadow-lg overflow-hidden card-hover"
-          >
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-white mb-2">
-                Dairy Transaction Processing System
-              </h3>
-              <time
-                class="block mb-2 text-sm font-normal leading-none text-gray-500"
-                >Feb 2022 - May 2022</time
-              >
-              <p class="text-gray-400 mb-4">
-                A system for a dairy business that streamlined invoicing and
-                data management, reducing processing time by
-                <strong class="text-indigo-300 font-bold">60%</strong>.
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm"
-                  >Flutter</span
-                >
-                <span
-                  class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm"
-                  >PHP</span
-                >
-                <span
-                  class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm"
-                  >MySQL</span
-                >
-                <span
-                  class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm"
-                  >REST APIs</span
-                >
-              </div>
-            </div>
-          </div>
-          <!-- Project 3 -->
-          <div
-            class="reveal bg-gray-800 rounded-lg shadow-lg overflow-hidden card-hover"
-          >
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-white mb-2">
-                Movie Recommendation System
-              </h3>
-              <time
-                class="block mb-2 text-sm font-normal leading-none text-gray-500"
-                >Jun 2020 - Aug 2020</time
-              >
-              <p class="text-gray-400 mb-4">
-                A system that recommends movies to users based on their previous
-                ratings.
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm"
-                  >Java</span
-                >
-              </div>
-            </div>
-          </div>
-          <!-- Project 4 -->
-          <div
-            class="reveal bg-gray-800 rounded-lg shadow-lg overflow-hidden card-hover"
-          >
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-white mb-2">
-                Visualization in JAVA using UnfoldingMaps
-              </h3>
-              <time
-                class="block mb-2 text-sm font-normal leading-none text-gray-500"
-                >Jun 2020</time
-              >
-              <p class="text-gray-400 mb-4">
-                An interactive graphical map that displays geospatial data using
-                the Unfolding Maps library.
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm"
-                  >Java</span
-                >
-              </div>
-            </div>
-          </div>
-          <!-- Project 5 -->
-          <div
-            class="reveal bg-gray-800 rounded-lg shadow-lg overflow-hidden card-hover"
-          >
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-white mb-2">
-                Blood Bank System
-              </h3>
-              <time
-                class="block mb-2 text-sm font-normal leading-none text-gray-500"
-                >Jan 2020 - Apr 2020</time
-              >
-              <p class="text-gray-400 mb-4">
-                A multi-lingual website to manage the blood donation process,
-                track appointments, and transactions.
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm"
-                  >PHP</span
-                >
-                <span
-                  class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm"
-                  >MySQL</span
-                >
-              </div>
-              <div class="mt-4">
-                <a
-                  href="https://bloodbanksddmo.herokuapp.com/"
-                  target="_blank"
-                  class="text-indigo-400 hover:underline"
-                  >View Project</a
-                >
-              </div>
-            </div>
-          </div>
-          <!-- Project 6 -->
-          <div
-            class="reveal bg-gray-800 rounded-lg shadow-lg overflow-hidden card-hover"
-          >
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-white mb-2">
-                Uber Data Analysis
-              </h3>
-              <time
-                class="block mb-2 text-sm font-normal leading-none text-gray-500"
-                >Apr 2020</time
-              >
-              <p class="text-gray-400 mb-4">
-                A data analysis and visualization project using R to pre-process
-                and cluster Uber data with K-means.
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm"
-                  >R</span
-                >
-              </div>
-              <div class="mt-4">
-                <a
-                  href="https://www.kaggle.com/dhrupal1289/kernel6d493f67a3#"
-                  target="_blank"
-                  class="text-indigo-400 hover:underline"
-                  >View on Kaggle</a
-                >
-              </div>
-            </div>
-          </div>
-          <!-- Project 7 -->
-          <div
-            class="reveal bg-gray-800 rounded-lg shadow-lg overflow-hidden card-hover"
-          >
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-white mb-2">
-                Hate Speech Detection
-              </h3>
-              <time
-                class="block mb-2 text-sm font-normal leading-none text-gray-500"
-                >Jan 2019 - Apr 2019</time
-              >
-              <p class="text-gray-400 mb-4">
-                A Machine Learning model with
-                <strong class="text-indigo-300 font-bold">85% accuracy</strong>
-                to detect and classify offensive tweets using Python.
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm"
-                  >Python</span
-                >
-              </div>
-              <div class="mt-4">
-                <a
-                  href="https://colab.research.google.com/drive/1ZbkaEfmy_aQnsCiJcFYdJ987dpqk-wLM?usp=sharing"
-                  target="_blank"
-                  class="text-indigo-400 hover:underline"
-                  >View on Colab</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Achievements & Recognition Section -->
-      <section id="achievements" class="mb-20 md:mb-32 scroll-mt-20">
-        <h2
-          class="reveal text-3xl md:text-4xl font-bold text-white mb-12 text-center"
-        >
-          Achievements & Recognition
-        </h2>
-        <div class="max-w-4xl mx-auto space-y-8">
-          <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
-            <h3 class="text-xl font-bold text-white mb-2">Publication</h3>
-            <p class="text-gray-400 italic">
-              "An ML and SMS remote access-based model for Anti-theft protection
-              of Android devices"
+        <!-- Hero Section -->
+        <section id="hero" class="text-center mb-20 md:mb-32">
+            <h1 class="reveal text-4xl md:text-6xl font-bold text-white mb-4">
+                Dhrupal Shah
+            </h1>
+            <p
+                class="reveal text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto h-16 md:h-20">
+                A versatile <strong id="typing-text" class="text-indigo-300"></strong>
+                <span class="sr-only">— delivering robust, scalable, and seamless software
+                    solutions.</span>
             </p>
-            <p class="text-sm text-gray-500 mt-1">
-              Published in ITM Web of Conferences, Vol. 32, 2020.
+            <p class="reveal text-gray-400 max-w-3xl mx-auto">
+                delivering robust, scalable, and seamless software solutions.
             </p>
-          </div>
-          <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
-            <h3 class="text-xl font-bold text-white mb-2">Awards</h3>
-            <ul class="list-disc list-inside text-gray-400 space-y-2">
-              <li>
-                <strong class="text-indigo-300">HackerRank Badges:</strong> Gold
-                in Problem-Solving, Java, Python, JavaScript; Silver in SQL
-              </li>
-              <li>
-                <strong class="text-indigo-300">3rd Place in Java Track</strong
-                >, Code Predators - National Coding Competition (Jun 2020)
-              </li>
-            </ul>
-          </div>
-          <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
-            <h3 class="text-xl font-bold text-white mb-2">Certifications</h3>
-            <ul class="list-disc list-inside text-gray-400 space-y-2">
-              <li>
+            <div class="reveal flex justify-center space-x-4 mt-6" data-stagger>
                 <a
-                  href="http://coursera.org/verify/specialization/BSDARFGELNEP"
-                  target="_blank"
-                  class="hover:text-indigo-400 underline"
-                  >Object-Oriented Programming with Java (Coursera)</a
-                >
-                - <span class="text-sm text-gray-500">Issued Jun 2020</span>
-              </li>
-              <li>
+                    href="https://github.com/1289dhrupal"
+                    target="_blank"
+                    class="text-gray-400 hover:text-indigo-400"
+                    aria-label="GitHub">
+                    <svg
+                        class="w-8 h-8"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 640 640">
+                        <path
+                            d="M237.9 461.4C237.9 463.4 235.6 465 232.7 465C229.4 465.3 227.1 463.7 227.1 461.4C227.1 459.4 229.4 457.8 232.3 457.8C235.3 457.5 237.9 459.1 237.9 461.4zM206.8 456.9C206.1 458.9 208.1 461.2 211.1 461.8C213.7 462.8 216.7 461.8 217.3 459.8C217.9 457.8 216 455.5 213 454.6C210.4 453.9 207.5 454.9 206.8 456.9zM251 455.2C248.1 455.9 246.1 457.8 246.4 460.1C246.7 462.1 249.3 463.4 252.3 462.7C255.2 462 257.2 460.1 256.9 458.1C256.6 456.2 253.9 454.9 251 455.2zM316.8 72C178.1 72 72 177.3 72 316C72 426.9 141.8 521.8 241.5 555.2C254.3 557.5 258.8 549.6 258.8 543.1C258.8 536.9 258.5 502.7 258.5 481.7C258.5 481.7 188.5 496.7 173.8 451.9C173.8 451.9 162.4 422.8 146 415.3C146 415.3 123.1 399.6 147.6 399.9C147.6 399.9 172.5 401.9 186.2 425.7C208.1 464.3 244.8 453.2 259.1 446.6C261.4 430.6 267.9 419.5 275.1 412.9C219.2 406.7 162.8 398.6 162.8 302.4C162.8 274.9 170.4 261.1 186.4 243.5C183.8 237 175.3 210.2 189 175.6C209.9 169.1 258 202.6 258 202.6C278 197 299.5 194.1 320.8 194.1C342.1 194.1 363.6 197 383.6 202.6C383.6 202.6 431.7 169 452.6 175.6C466.3 210.3 457.8 237 455.2 243.5C471.2 261.2 481 275 481 302.4C481 398.9 422.1 406.6 366.2 412.9C375.4 420.8 383.2 435.8 383.2 459.3C383.2 493 382.9 534.7 382.9 542.9C382.9 549.4 387.5 557.3 400.2 555C500.2 521.8 568 426.9 568 316C568 177.3 455.5 72 316.8 72zM169.2 416.9C167.9 417.9 168.2 420.2 169.9 422.1C171.5 423.7 173.8 424.4 175.1 423.1C176.4 422.1 176.1 419.8 174.4 417.9C172.8 416.3 170.5 415.6 169.2 416.9zM158.4 408.8C157.7 410.1 158.7 411.7 160.7 412.7C162.3 413.7 164.3 413.4 165 412C165.7 410.7 164.7 409.1 162.7 408.1C160.7 407.5 159.1 407.8 158.4 408.8zM190.8 444.4C189.2 445.7 189.8 448.7 192.1 450.6C194.4 452.9 197.3 453.2 198.6 451.6C199.9 450.3 199.3 447.3 197.3 445.4C195.1 443.1 192.1 442.8 190.8 444.4zM179.4 429.7C177.8 430.7 177.8 433.3 179.4 435.6C181 437.9 183.7 438.9 185 437.9C186.6 436.6 186.6 434 185 431.7C183.6 429.4 181 428.4 179.4 429.7z" />
+                    </svg>
+                </a>
                 <a
-                  href="https://www.udemy.com/certificate/UC-36a7c89d-77d1-4629-a5c9-a85e6a162971/"
-                  target="_blank"
-                  class="hover:text-indigo-400 underline"
-                  >The Web Developer Bootcamp (Udemy)</a
-                >
-                - <span class="text-sm text-gray-500">Issued Aug 2020</span>
-              </li>
-              <li>
+                    href="https://www.linkedin.com/in/dhrupal-shah/"
+                    target="_blank"
+                    class="text-gray-400 hover:text-indigo-400"
+                    aria-label="LinkedIn">
+                    <svg
+                        class="w-8 h-8"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 640 640">
+                        <path
+                            d="M160 96C124.7 96 96 124.7 96 160L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 160C544 124.7 515.3 96 480 96L160 96zM165 266.2L231.5 266.2L231.5 480L165 480L165 266.2zM236.7 198.5C236.7 219.8 219.5 237 198.2 237C176.9 237 159.7 219.8 159.7 198.5C159.7 177.2 176.9 160 198.2 160C219.5 160 236.7 177.2 236.7 198.5zM413.9 480L413.9 376C413.9 351.2 413.4 319.3 379.4 319.3C344.8 319.3 339.5 346.3 339.5 374.2L339.5 480L273.1 480L273.1 266.2L336.8 266.2L336.8 295.4L337.7 295.4C346.6 278.6 368.3 260.9 400.6 260.9C467.8 260.9 480.3 305.2 480.3 362.8L480.3 480L413.9 480z" />
+                    </svg>
+                </a>
                 <a
-                  href="https://www.hackerrank.com/certificates/d5ddac06581a"
-                  target="_blank"
-                  class="hover:text-indigo-400 underline"
-                  >Java (Basic) - HackerRank</a
-                >
-                - <span class="text-sm text-gray-500">Issued Jun 2020</span>
-              </li>
-              <li>
-                <a
-                  href="https://www.hackerrank.com/certificates/1cffca3019ca"
-                  target="_blank"
-                  class="hover:text-indigo-400 underline"
-                  >Problem Solving (Basic) - HackerRank</a
-                >
-                - <span class="text-sm text-gray-500">Issued Jun 2020</span>
-              </li>
-              <li>
-                <a
-                  href="http://coursera.org/verify/specialization/TJFHH36QG4QJ"
-                  target="_blank"
-                  class="hover:text-indigo-400 underline"
-                  >Web Design for Everybody: Basics of Web Development & Coding
-                  (Coursera)</a
-                >
-                - <span class="text-sm text-gray-500">Issued Jul 2020</span>
-              </li>
-              <li>
-                <a
-                  href="https://www.datacamp.com/statement-of-accomplishment/track/ef287fd01021131b76d9f376778eb6f63cba172c"
-                  target="_blank"
-                  class="hover:text-indigo-400 underline"
-                  >Data Scientist with R Track (DataCamp)</a
-                >
-                - <span class="text-sm text-gray-500">Issued May 2020</span>
-              </li>
-              <li>
-                <a
-                  href="https://www.datacamp.com/statement-of-accomplishment/track/5f0fc2759f4765da9e7f05c8801c7942412cdd77"
-                  target="_blank"
-                  class="hover:text-indigo-400 underline"
-                  >R Programming Track (DataCamp)</a
-                >
-                - <span class="text-sm text-gray-500">Issued May 2020</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
+                    href="https://www.hackerrank.com/profile/1289dhrupal"
+                    target="_blank"
+                    class="text-gray-400 hover:text-indigo-400"
+                    aria-label="HackerRank">
+                    <svg
+                        class="w-8 h-8"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 640 640">
+                        <path
+                            d="M541.9 192C527.4 167 349.5 64 320.5 64C291.5 64 113.6 166.8 99.2 192C84.8 217.2 84.7 422.8 99.2 448C113.7 473.2 291.6 576 320.5 576C349.4 576 527.3 473.1 541.8 448C556.3 422.9 556.3 217 541.8 192zM380.5 478.2C376.5 478.2 339.6 442.4 342.5 439.5C343.4 438.6 348.8 438 360 437.7C360 411.5 360.6 369.1 360.9 351.4C360.9 349.4 360.5 348 360.5 345.6L280.6 345.6C280.6 352.7 280.1 381.8 282 418.5C282.2 423 280.4 424.5 276.3 424.4C266.2 424.4 256 424.3 245.9 424.3C241.8 424.3 240 422.8 240.2 418.2C241.1 384.8 243.2 334.2 240 205.5L240 202.3C230.3 201.9 223.6 201.3 222.7 200.5C219.8 197.6 257.2 161.8 261.2 161.8C265.2 161.8 302.4 197.6 299.5 200.5C298.6 201.4 291.6 202 282.7 202.3L282.7 205.5C280.3 231.3 280.7 285.1 280.1 310.9L360.4 310.9C360.4 306.3 360.8 276.2 359.2 227.3C359.1 223.9 360.2 222.1 363.4 222.1C374.5 222 385.6 222 396.6 222C400.1 222 401.2 223.7 401.1 227.4C397.4 418.7 400.4 405.3 400.4 437.7C409.3 438.1 417.2 438.7 418.1 439.5C421 442.4 384.5 478.2 380.5 478.2L380.5 478.2z" />
+                    </svg>
+                </a>
+            </div>
+        </section>
 
-      <!-- Contact Section -->
-      <section id="contact" class="scroll-mt-20">
-        <h2
-          class="reveal text-3xl md:text-4xl font-bold text-white mb-8 text-center"
-        >
-          Get In Touch
-        </h2>
-        <div
-          class="reveal max-w-xl mx-auto text-center bg-gray-800 p-8 rounded-lg shadow-lg"
-        >
-          <p class="text-lg text-gray-400 mb-4">
-            I'm currently open to new opportunities. If you have a project in
-            mind or just want to connect, feel free to reach out!
-          </p>
-          <a
-            href="mailto:dhrupal.shah@outlook.in"
-            class="inline-block bg-indigo-600 text-white text-lg px-8 py-3 rounded-md hover:bg-indigo-700 transition shadow-sm btn-pulse"
-            >Say Hello</a
-          >
-          <p class="text-gray-500 mt-6">dhrupal.shah@outlook.in</p>
-          <p class="text-gray-500">+44 7774 723022</p>
-        </div>
-      </section>
+        <!-- About Me Section -->
+        <section id="about" class="mb-20 md:mb-32 scroll-mt-20">
+            <h2
+                class="reveal text-3xl md:text-4xl font-bold text-white mb-8 text-center">
+                About Me
+            </h2>
+            <div
+                class="reveal bg-gray-800 p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+                <p class="text-lg text-gray-400 leading-relaxed">
+                    I am a versatile developer who thrives across the stack—designing
+                    APIs, crafting CI/CD pipelines, building intuitive UI components,
+                    and mentoring teammates. With a strong grasp of how technologies
+                    connect, I deliver scalable, end-to-end systems that are not only
+                    robust but also seamless in operation. More than a specialist, I'm a
+                    systems thinker and hands-on builder who ensures every piece fits
+                    together to create software that just works.
+                </p>
+            </div>
+        </section>
+
+        <!-- Technical Skills Section -->
+        <section id="skills" class="mb-20 md:mb-32 scroll-mt-20">
+            <h2
+                class="reveal text-3xl md:text-4xl font-bold text-white mb-12 text-center">
+                Technical Skills
+            </h2>
+            <div class="max-w-6xl mx-auto">
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    data-stagger>
+                    <!-- Languages -->
+                    <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-semibold text-white mb-4">Languages</h3>
+                        <div class="flex flex-wrap gap-2" data-stagger>
+                            <span
+                                class="reveal skill-tag bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium">JavaScript</span>
+                            <span
+                                class="reveal skill-tag bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium">PHP</span>
+                            <span
+                                class="reveal skill-tag bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium">Python</span>
+                            <span
+                                class="reveal skill-tag bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium">TypeScript</span>
+                            <span
+                                class="reveal skill-tag bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium">Java</span>
+                            <span
+                                class="reveal skill-tag bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium">HTML</span>
+                            <span
+                                class="reveal skill-tag bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium">CSS</span>
+                            <span
+                                class="reveal skill-tag bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium">Bash</span>
+                        </div>
+                    </div>
+                    <!-- Frameworks & CMS -->
+                    <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-semibold text-white mb-4">
+                            Frameworks & CMS
+                        </h3>
+                        <div class="flex flex-wrap gap-2" data-stagger>
+                            <span
+                                class="reveal skill-tag bg-green-900/50 text-green-300 px-3 py-1 rounded-full text-sm font-medium">Laravel</span>
+                            <span
+                                class="reveal skill-tag bg-green-900/50 text-green-300 px-3 py-1 rounded-full text-sm font-medium">Spring Boot</span>
+                            <span
+                                class="reveal skill-tag bg-green-900/50 text-green-300 px-3 py-1 rounded-full text-sm font-medium">WordPress</span>
+                            <span
+                                class="reveal skill-tag bg-green-900/50 text-green-300 px-3 py-1 rounded-full text-sm font-medium">Vue.js</span>
+                            <span
+                                class="reveal skill-tag bg-green-900/50 text-green-300 px-3 py-1 rounded-full text-sm font-medium">React.js</span>
+                            <span
+                                class="reveal skill-tag bg-green-900/50 text-green-300 px-3 py-1 rounded-full text-sm font-medium">Node.js</span>
+                        </div>
+                    </div>
+                    <!-- Cloud & APIs -->
+                    <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-semibold text-white mb-4">
+                            Cloud & APIs
+                        </h3>
+                        <div class="flex flex-wrap gap-2" data-stagger>
+                            <span
+                                class="reveal skill-tag bg-yellow-900/50 text-yellow-300 px-3 py-1 rounded-full text-sm font-medium">GCP</span>
+                            <span
+                                class="reveal skill-tag bg-yellow-900/50 text-yellow-300 px-3 py-1 rounded-full text-sm font-medium">Google Pub/Sub</span>
+                            <span
+                                class="reveal skill-tag bg-yellow-900/50 text-yellow-300 px-3 py-1 rounded-full text-sm font-medium">Google Ads API</span>
+                            <span
+                                class="reveal skill-tag bg-yellow-900/50 text-yellow-300 px-3 py-1 rounded-full text-sm font-medium">OpenAI API</span>
+                            <span
+                                class="reveal skill-tag bg-yellow-900/50 text-yellow-300 px-3 py-1 rounded-full text-sm font-medium">Selenium WebDriver</span>
+                        </div>
+                    </div>
+                    <!-- Databases -->
+                    <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-semibold text-white mb-4">Databases</h3>
+                        <div class="flex flex-wrap gap-2" data-stagger>
+                            <span
+                                class="reveal skill-tag bg-red-900/50 text-red-300 px-3 py-1 rounded-full text-sm font-medium">MySQL</span>
+                            <span
+                                class="reveal skill-tag bg-red-900/50 text-red-300 px-3 py-1 rounded-full text-sm font-medium">MongoDB</span>
+                            <span
+                                class="reveal skill-tag bg-red-900/50 text-red-300 px-3 py-1 rounded-full text-sm font-medium">Oracle</span>
+                            <span
+                                class="reveal skill-tag bg-red-900/50 text-red-300 px-3 py-1 rounded-full text-sm font-medium">MSSQL</span>
+                            <span
+                                class="reveal skill-tag bg-red-900/50 text-red-300 px-3 py-1 rounded-full text-sm font-medium">PostgreSQL</span>
+                        </div>
+                    </div>
+                    <!-- Tools & Platforms -->
+                    <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-semibold text-white mb-4">
+                            Tools & Platforms
+                        </h3>
+                        <div class="flex flex-wrap gap-2" data-stagger>
+                            <span
+                                class="reveal skill-tag bg-purple-900/50 text-purple-300 px-3 py-1 rounded-full text-sm font-medium">Docker</span>
+                            <span
+                                class="reveal skill-tag bg-purple-900/50 text-purple-300 px-3 py-1 rounded-full text-sm font-medium">Git</span>
+                            <span
+                                class="reveal skill-tag bg-purple-900/50 text-purple-300 px-3 py-1 rounded-full text-sm font-medium">GitHub Actions</span>
+                            <span
+                                class="reveal skill-tag bg-purple-900/50 text-purple-300 px-3 py-1 rounded-full text-sm font-medium">Jira</span>
+                            <span
+                                class="reveal skill-tag bg-purple-900/50 text-purple-300 px-3 py-1 rounded-full text-sm font-medium">Gitea</span>
+                        </div>
+                    </div>
+                    <!-- Automation & Testing -->
+                    <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-semibold text-white mb-4">
+                            Automation & Testing
+                        </h3>
+                        <div class="flex flex-wrap gap-2" data-stagger>
+                            <span
+                                class="reveal skill-tag bg-teal-900/50 text-teal-300 px-3 py-1 rounded-full text-sm font-medium">Selenium</span>
+                            <span
+                                class="reveal skill-tag bg-teal-900/50 text-teal-300 px-3 py-1 rounded-full text-sm font-medium">PHPUnit</span>
+                            <span
+                                class="reveal skill-tag bg-teal-900/50 text-teal-300 px-3 py-1 rounded-full text-sm font-medium">Postman</span>
+                            <span
+                                class="reveal skill-tag bg-teal-900/50 text-teal-300 px-3 py-1 rounded-full text-sm font-medium">Cron Jobs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="mb-20 md:mb-32 scroll-mt-20">
+            <h2
+                class="reveal text-3xl md:text-4xl font-bold text-white mb-12 text-center">
+                Work Experience
+            </h2>
+            <div class="max-w-4xl mx-auto relative border-l-2 border-gray-700">
+                <!-- Experience Item 1 -->
+                <div class="reveal mb-12 ml-6">
+                    <span
+                        class="absolute flex items-center justify-center w-6 h-6 bg-indigo-600 rounded-full -left-3 ring-8 ring-gray-900">
+                        <svg
+                            class="w-3 h-3 text-white"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                fill-rule="evenodd"
+                                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </span>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-bold text-white">Software Engineer</h3>
+                        <p class="text-md font-semibold text-indigo-400 mb-1">
+                            Sellergize
+                        </p>
+                        <time
+                            class="block mb-2 text-sm font-normal leading-none text-gray-500">Mar 2024 - Present</time>
+                        <ul class="list-disc list-inside text-gray-400 space-y-2">
+                            <li>
+                                Reduced manual workflows by
+                                <strong class="text-indigo-300 font-bold">50%</strong> by
+                                developing a Laravel-based admin panel.
+                            </li>
+                            <li>
+                                Integrated Google Pub/Sub for scalable data streaming and
+                                Google Ads API for traffic insights.
+                            </li>
+                            <li>
+                                Led cloud deployments, ensuring smooth go-lives and CI/CD
+                                alignment.
+                            </li>
+                            <li>
+                                Mentored a team of
+                                <strong class="text-indigo-300 font-bold">4 developers</strong>, enforcing clean code and secure coding standards.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Experience Item 2 -->
+                <div class="reveal mb-12 ml-6">
+                    <span
+                        class="absolute flex items-center justify-center w-6 h-6 bg-indigo-600 rounded-full -left-3 ring-8 ring-gray-900">
+                        <svg
+                            class="w-3 h-3 text-white"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                fill-rule="evenodd"
+                                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </span>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-bold text-white">Product Engineer</h3>
+                        <p class="text-md font-semibold text-indigo-400 mb-1">Seclore</p>
+                        <time
+                            class="block mb-2 text-sm font-normal leading-none text-gray-500">Sep 2022 - Sep 2023</time>
+                        <ul class="list-disc list-inside text-gray-400 space-y-2">
+                            <li>
+                                Improved deployment efficiency by cutting build times from
+                                <strong class="text-indigo-300 font-bold">1.5 days to 2 hours</strong>
+                                with automation scripts.
+                            </li>
+                            <li>
+                                Reduced client-server implementation time by
+                                <strong class="text-indigo-300 font-bold">40%</strong> by
+                                containerizing applications with Docker.
+                            </li>
+                            <li>
+                                Conducted rigorous unit testing, resulting in
+                                <strong class="text-indigo-300 font-bold">zero critical post-release bugs</strong>.
+                            </li>
+                            <li>
+                                Developed a Spring Boot API to return geographical data for IP
+                                addresses.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Experience Item 3 -->
+                <div class="reveal ml-6">
+                    <span
+                        class="absolute flex items-center justify-center w-6 h-6 bg-indigo-600 rounded-full -left-3 ring-8 ring-gray-900">
+                        <svg
+                            class="w-3 h-3 text-white"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                fill-rule="evenodd"
+                                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </span>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-bold text-white">Software Engineer</h3>
+                        <p class="text-md font-semibold text-indigo-400 mb-1">
+                            Sellergize
+                        </p>
+                        <time
+                            class="block mb-2 text-sm font-normal leading-none text-gray-500">Aug 2020 - Sep 2022</time>
+                        <ul class="list-disc list-inside text-gray-400 space-y-2">
+                            <li>
+                                Enhanced user experience by revamping a user panel with
+                                Vue.js, reducing response times by
+                                <strong class="text-indigo-300 font-bold">300%</strong>.
+                            </li>
+                            <li>
+                                Boosted system efficiency by
+                                <strong class="text-indigo-300 font-bold">20%</strong> by
+                                refactoring critical modules.
+                            </li>
+                            <li>
+                                Increased sales by
+                                <strong class="text-indigo-300 font-bold">20%</strong> by
+                                building custom WordPress plugins and themes.
+                            </li>
+                            <li>
+                                Integrated multiple affiliate networks via REST APIs to
+                                improve monetization.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="mb-20 md:mb-32 scroll-mt-20">
+            <h2
+                class="reveal text-3xl md:text-4xl font-bold text-white mb-12 text-center">
+                Education
+            </h2>
+            <div class="max-w-4xl mx-auto relative border-l-2 border-gray-700">
+                <!-- Education Item 1 -->
+                <div class="reveal mb-12 ml-6">
+                    <span
+                        class="absolute flex items-center justify-center w-6 h-6 bg-indigo-600 rounded-full -left-3 ring-8 ring-gray-900">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 640 640"
+                            class="w-4 h-4 text-white"
+                            fill="currentColor">
+                            <path
+                                d="M80 259.8L289.2 345.9C299 349.9 309.4 352 320 352C330.6 352 341 349.9 350.8 345.9L593.2 246.1C602.2 242.4 608 233.7 608 224C608 214.3 602.2 205.6 593.2 201.9L350.8 102.1C341 98.1 330.6 96 320 96C309.4 96 299 98.1 289.2 102.1L46.8 201.9C37.8 205.6 32 214.3 32 224L32 520C32 533.3 42.7 544 56 544C69.3 544 80 533.3 80 520L80 259.8zM128 331.5L128 448C128 501 214 544 320 544C426 544 512 501 512 448L512 331.4L369.1 390.3C353.5 396.7 336.9 400 320 400C303.1 400 286.5 396.7 270.9 390.3L128 331.4z" />
+                        </svg>
+                    </span>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-bold text-white">
+                            MSc Advanced Computer Science
+                        </h3>
+                        <p class="text-md font-semibold text-indigo-400 mb-1">
+                            University of Leicester
+                        </p>
+                        <time
+                            class="block mb-2 text-sm font-normal leading-none text-gray-500">Sep 2023 - Nov 2024</time>
+                        <p class="text-gray-400">
+                            <strong class="text-indigo-300 font-bold">Distinction (73%)</strong>
+                        </p>
+                    </div>
+                </div>
+                <!-- Education Item 2 -->
+                <div class="reveal ml-6">
+                    <span
+                        class="absolute flex items-center justify-center w-6 h-6 bg-indigo-600 rounded-full -left-3 ring-8 ring-gray-900">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 640 640"
+                            class="w-4 h-4 text-white"
+                            fill="currentColor">
+                            <path
+                                d="M80 259.8L289.2 345.9C299 349.9 309.4 352 320 352C330.6 352 341 349.9 350.8 345.9L593.2 246.1C602.2 242.4 608 233.7 608 224C608 214.3 602.2 205.6 593.2 201.9L350.8 102.1C341 98.1 330.6 96 320 96C309.4 96 299 98.1 289.2 102.1L46.8 201.9C37.8 205.6 32 214.3 32 224L32 520C32 533.3 42.7 544 56 544C69.3 544 80 533.3 80 520L80 259.8zM128 331.5L128 448C128 501 214 544 320 544C426 544 512 501 512 448L512 331.4L369.1 390.3C353.5 396.7 336.9 400 320 400C303.1 400 286.5 396.7 270.9 390.3L128 331.4z" />
+                        </svg>
+                    </span>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-bold text-white">
+                            Bachelors in Computer Engineering
+                        </h3>
+                        <p class="text-md font-semibold text-indigo-400 mb-1">
+                            Ramrao Adik Institute of Technology
+                        </p>
+                        <time
+                            class="block mb-2 text-sm font-normal leading-none text-gray-500">Aug 2016 - Oct 2020</time>
+                        <p class="text-gray-400">
+                            Grade: <strong class="text-indigo-300 font-bold">6.8/10</strong>
+                        </p>
+                        <ul class="list-disc list-inside text-gray-400 space-y-2 mt-2">
+                            <li>
+                                <strong>Activities:</strong> Coder's Club, CSI committee
+                            </li>
+                            <li>Participated in DMCE Hackathon 2020</li>
+                            <li>Event Head for "Dark League" in Techmate 2018</li>
+                            <li>Organizer for "Glowball" in Techmate 2017</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="mb-20 md:mb-32 scroll-mt-20">
+            <h2
+                class="reveal text-3xl md:text-4xl font-bold text-white mb-12 text-center">
+                Projects
+            </h2>
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto"
+                data-stagger>
+                <!-- Project 1 -->
+                <div
+                    class="reveal bg-gray-800 rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">
+                            Web-Based Academic Git Repository Monitoring System
+                        </h3>
+                        <time
+                            class="block mb-2 text-sm font-normal leading-none text-gray-500">Jun 2024 - Sep 2024</time>
+                        <p class="text-gray-400 mb-4">
+                            An AI-powered tool that integrates GitHub and GitLab APIs to
+                            analyse commit quality and inactivity for equitable student
+                            evaluation, improving tracking accuracy by
+                            <strong class="text-indigo-300 font-bold">50%</strong>.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm">PHP</span>
+                            <span
+                                class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm">MySQL</span>
+                            <span
+                                class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm">Vue.js</span>
+                            <span
+                                class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm">GitHub API</span>
+                            <span
+                                class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm">OpenAI</span>
+                        </div>
+                        <div class="mt-4">
+                            <a
+                                href="https://github.com/1289dhrupal/msc_project"
+                                target="_blank"
+                                class="text-indigo-400 hover:underline mr-4">Backend Repo</a>
+                            <a
+                                href="https://github.com/1289dhrupal/msc_project_fe"
+                                target="_blank"
+                                class="text-indigo-400 hover:underline">Frontend Repo</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div
+                    class="reveal bg-gray-800 rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">
+                            Dairy Transaction Processing System
+                        </h3>
+                        <time
+                            class="block mb-2 text-sm font-normal leading-none text-gray-500">Feb 2022 - May 2022</time>
+                        <p class="text-gray-400 mb-4">
+                            A system for a dairy business that streamlined invoicing and
+                            data management, reducing processing time by
+                            <strong class="text-indigo-300 font-bold">60%</strong>.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm">Flutter</span>
+                            <span
+                                class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm">PHP</span>
+                            <span
+                                class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm">MySQL</span>
+                            <span
+                                class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm">REST APIs</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div
+                    class="reveal bg-gray-800 rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">
+                            Movie Recommendation System
+                        </h3>
+                        <time
+                            class="block mb-2 text-sm font-normal leading-none text-gray-500">Jun 2020 - Aug 2020</time>
+                        <p class="text-gray-400 mb-4">
+                            A system that recommends movies to users based on their previous
+                            ratings.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm">Java</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 4 -->
+                <div
+                    class="reveal bg-gray-800 rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">
+                            Visualization in JAVA using UnfoldingMaps
+                        </h3>
+                        <time
+                            class="block mb-2 text-sm font-normal leading-none text-gray-500">Jun 2020</time>
+                        <p class="text-gray-400 mb-4">
+                            An interactive graphical map that displays geospatial data using
+                            the Unfolding Maps library.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm">Java</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 5 -->
+                <div
+                    class="reveal bg-gray-800 rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">
+                            Blood Bank System
+                        </h3>
+                        <time
+                            class="block mb-2 text-sm font-normal leading-none text-gray-500">Jan 2020 - Apr 2020</time>
+                        <p class="text-gray-400 mb-4">
+                            A multi-lingual website to manage the blood donation process,
+                            track appointments, and transactions.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm">PHP</span>
+                            <span
+                                class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm">MySQL</span>
+                        </div>
+                        <div class="mt-4">
+                            <a
+                                href="https://bloodbanksddmo.herokuapp.com/"
+                                target="_blank"
+                                class="text-indigo-400 hover:underline">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 6 -->
+                <div
+                    class="reveal bg-gray-800 rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">
+                            Uber Data Analysis
+                        </h3>
+                        <time
+                            class="block mb-2 text-sm font-normal leading-none text-gray-500">Apr 2020</time>
+                        <p class="text-gray-400 mb-4">
+                            A data analysis and visualization project using R to pre-process
+                            and cluster Uber data with K-means.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm">R</span>
+                        </div>
+                        <div class="mt-4">
+                            <a
+                                href="https://www.kaggle.com/dhrupal1289/kernel6d493f67a3#"
+                                target="_blank"
+                                class="text-indigo-400 hover:underline">View on Kaggle</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 7 -->
+                <div
+                    class="reveal bg-gray-800 rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">
+                            Hate Speech Detection
+                        </h3>
+                        <time
+                            class="block mb-2 text-sm font-normal leading-none text-gray-500">Jan 2019 - Apr 2019</time>
+                        <p class="text-gray-400 mb-4">
+                            A Machine Learning model with
+                            <strong class="text-indigo-300 font-bold">85% accuracy</strong>
+                            to detect and classify offensive tweets using Python.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="bg-gray-700 text-gray-300 px-2 py-1 rounded-md text-sm">Python</span>
+                        </div>
+                        <div class="mt-4">
+                            <a
+                                href="https://colab.research.google.com/drive/1ZbkaEfmy_aQnsCiJcFYdJ987dpqk-wLM?usp=sharing"
+                                target="_blank"
+                                class="text-indigo-400 hover:underline">View on Colab</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements & Recognition Section -->
+        <section id="achievements" class="mb-20 md:mb-32 scroll-mt-20">
+            <h2
+                class="reveal text-3xl md:text-4xl font-bold text-white mb-12 text-center">
+                Achievements & Recognition
+            </h2>
+            <div class="max-w-4xl mx-auto space-y-8">
+                <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                    <h3 class="text-xl font-bold text-white mb-2">Publication</h3>
+                    <p class="text-gray-400 italic">
+                        "An ML and SMS remote access-based model for Anti-theft protection
+                        of Android devices"
+                    </p>
+                    <p class="text-sm text-gray-500 mt-1">
+                        Published in ITM Web of Conferences, Vol. 32, 2020.
+                    </p>
+                </div>
+                <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                    <h3 class="text-xl font-bold text-white mb-2">Awards</h3>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>
+                            <strong class="text-indigo-300">HackerRank Badges:</strong> Gold
+                            in Problem-Solving, Java, Python, JavaScript; Silver in SQL
+                        </li>
+                        <li>
+                            <strong class="text-indigo-300">3rd Place in Java Track</strong>, Code Predators - National Coding Competition (Jun 2020)
+                        </li>
+                    </ul>
+                </div>
+                <div class="reveal bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                    <h3 class="text-xl font-bold text-white mb-2">Certifications</h3>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>
+                            <a
+                                href="http://coursera.org/verify/specialization/BSDARFGELNEP"
+                                target="_blank"
+                                class="hover:text-indigo-400 underline">Object-Oriented Programming with Java (Coursera)</a>
+                            - <span class="text-sm text-gray-500">Issued Jun 2020</span>
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.udemy.com/certificate/UC-36a7c89d-77d1-4629-a5c9-a85e6a162971/"
+                                target="_blank"
+                                class="hover:text-indigo-400 underline">The Web Developer Bootcamp (Udemy)</a>
+                            - <span class="text-sm text-gray-500">Issued Aug 2020</span>
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.hackerrank.com/certificates/d5ddac06581a"
+                                target="_blank"
+                                class="hover:text-indigo-400 underline">Java (Basic) - HackerRank</a>
+                            - <span class="text-sm text-gray-500">Issued Jun 2020</span>
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.hackerrank.com/certificates/1cffca3019ca"
+                                target="_blank"
+                                class="hover:text-indigo-400 underline">Problem Solving (Basic) - HackerRank</a>
+                            - <span class="text-sm text-gray-500">Issued Jun 2020</span>
+                        </li>
+                        <li>
+                            <a
+                                href="http://coursera.org/verify/specialization/TJFHH36QG4QJ"
+                                target="_blank"
+                                class="hover:text-indigo-400 underline">Web Design for Everybody: Basics of Web Development & Coding
+                                (Coursera)</a>
+                            - <span class="text-sm text-gray-500">Issued Jul 2020</span>
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.datacamp.com/statement-of-accomplishment/track/ef287fd01021131b76d9f376778eb6f63cba172c"
+                                target="_blank"
+                                class="hover:text-indigo-400 underline">Data Scientist with R Track (DataCamp)</a>
+                            - <span class="text-sm text-gray-500">Issued May 2020</span>
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.datacamp.com/statement-of-accomplishment/track/5f0fc2759f4765da9e7f05c8801c7942412cdd77"
+                                target="_blank"
+                                class="hover:text-indigo-400 underline">R Programming Track (DataCamp)</a>
+                            - <span class="text-sm text-gray-500">Issued May 2020</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="scroll-mt-20">
+            <h2
+                class="reveal text-3xl md:text-4xl font-bold text-white mb-8 text-center">
+                Get In Touch
+            </h2>
+            <div
+                class="reveal max-w-xl mx-auto text-center bg-gray-800 p-8 rounded-lg shadow-lg">
+                <p class="text-lg text-gray-400 mb-4">
+                    I'm currently open to new opportunities. If you have a project in
+                    mind or just want to connect, feel free to reach out!
+                </p>
+                <a
+                    href="mailto:dhrupal.shah@outlook.in"
+                    class="inline-block bg-indigo-600 text-white text-lg px-8 py-3 rounded-md hover:bg-indigo-700 transition shadow-sm btn-pulse">Say Hello</a>
+                <p class="text-gray-500 mt-6">dhrupal.shah@outlook.in</p>
+                <p class="text-gray-500">+44 7774 723022</p>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white mt-20">
-      <div class="container mx-auto px-6 py-8 text-center">
-        <p>&copy; 2025 Dhrupal Shah. All rights reserved.</p>
-        <p class="text-sm text-gray-500 mt-2">Built with HTML & Tailwind CSS</p>
-      </div>
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Dhrupal Shah. All rights reserved.</p>
+            <p class="text-sm text-gray-500 mt-2">Built with HTML & Tailwind CSS</p>
+        </div>
     </footer>
 
     <script>
-      // Mobile menu toggle with slide animation
-      const mobileMenuButton = document.getElementById("mobile-menu-button");
-      const mobileMenu = document.getElementById("mobile-menu");
-      mobileMenuButton?.addEventListener("click", () => {
-        const isOpen = mobileMenu.classList.toggle("open");
-        mobileMenuButton.setAttribute("aria-expanded", String(isOpen));
-      });
+        // Mobile menu toggle with slide animation
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        mobileMenuButton?.addEventListener("click", () => {
+            const isOpen = mobileMenu.classList.toggle("open");
+            mobileMenuButton.setAttribute("aria-expanded", String(isOpen));
+        });
 
-      // Intersection Observer for scroll-reveal & stagger
-      const revealItems = document.querySelectorAll(".reveal");
-      const prefersReduce = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
+        // Intersection Observer for scroll-reveal & stagger
+        const revealItems = document.querySelectorAll(".reveal");
+        const prefersReduce = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
 
-      if (!prefersReduce && "IntersectionObserver" in window) {
-        const io = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                const target = entry.target;
-                target.classList.add("show");
+        if (!prefersReduce && "IntersectionObserver" in window) {
+            const io = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const target = entry.target;
+                            target.classList.add("show");
 
-                // Stagger children if parent has data-stagger
-                const parent = target.matches("[data-stagger]")
-                  ? target
-                  : target.closest("[data-stagger]");
-                if (parent) {
-                  [...parent.children].forEach((child, index) => {
-                    if (child.classList.contains("reveal")) {
-                      child.style.setProperty("--index", index);
-                      child.classList.add("show");
-                    }
-                  });
+                            // Stagger children if parent has data-stagger
+                            const parent = target.matches("[data-stagger]") ?
+                                target :
+                                target.closest("[data-stagger]");
+                            if (parent) {
+                                [...parent.children].forEach((child, index) => {
+                                    if (child.classList.contains("reveal")) {
+                                        child.style.setProperty("--index", index);
+                                        child.classList.add("show");
+                                    }
+                                });
+                            }
+                            io.unobserve(target);
+                        }
+                    });
+                }, {
+                    rootMargin: "0px 0px -10% 0px",
+                    threshold: 0.12
                 }
-                io.unobserve(target);
-              }
-            });
-          },
-          { rootMargin: "0px 0px -10% 0px", threshold: 0.12 }
-        );
+            );
 
-        revealItems.forEach((el) => io.observe(el));
-      } else {
-        revealItems.forEach((el) => el.classList.add("show"));
-      }
+            revealItems.forEach((el) => io.observe(el));
+        } else {
+            revealItems.forEach((el) => el.classList.add("show"));
+        }
 
-      // Typed text effect (as-is, slightly polished)
-      const typingEl = document.getElementById("typing-text");
-      if (typingEl) {
-        const phrases = [
-          "full-stack developer",
-          "systems thinker",
-          "API designer",
-          "CI/CD wrangler",
-          "problem solver"
-        ];
+        // Typed text effect (as-is, slightly polished)
+        const typingEl = document.getElementById("typing-text");
+        if (typingEl) {
+            const phrases = [
+                "full-stack developer",
+                "systems thinker",
+                "API designer",
+                "CI/CD wrangler",
+                "problem solver"
+            ];
 
-        let phraseIndex = 0,
-          charIndex = 0,
-          deleting = false;
+            let phraseIndex = 0,
+                charIndex = 0,
+                deleting = false;
 
-        const type = () => {
-          const current = phrases[phraseIndex];
-          const displayed = deleting
-            ? current.slice(0, charIndex--)
-            : current.slice(0, charIndex++);
-          typingEl.textContent = displayed;
+            const type = () => {
+                const current = phrases[phraseIndex];
+                const displayed = deleting ?
+                    current.slice(0, charIndex--) :
+                    current.slice(0, charIndex++);
+                typingEl.textContent = displayed;
 
-          if (!deleting && charIndex === current.length + 1) {
-            deleting = true;
-            setTimeout(type, 1100);
-            return;
-          }
-          if (deleting && charIndex === 0) {
-            deleting = false;
-            phraseIndex = (phraseIndex + 1) % phrases.length;
-          }
-          const base = deleting ? 40 : 68;
-          const variance = Math.random() * 60;
-          setTimeout(type, base + variance);
-        };
+                if (!deleting && charIndex === current.length + 1) {
+                    deleting = true;
+                    setTimeout(type, 1100);
+                    return;
+                }
+                if (deleting && charIndex === 0) {
+                    deleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                }
+                const base = deleting ? 40 : 68;
+                const variance = Math.random() * 60;
+                setTimeout(type, base + variance);
+            };
 
-        type();
-      }
+            type();
+        }
 
-      // ---------------------------
-      // NEW: Parallax on the hero
-      // ---------------------------
-      (function setupParallax() {
-        if (prefersReduce) return;
+        // ---------------------------
+        // NEW: Parallax on the hero
+        // ---------------------------
+        (function setupParallax() {
+            if (prefersReduce) return;
 
-        const hero = document.getElementById("hero");
-        if (!hero) return;
+            const hero = document.getElementById("hero");
+            if (!hero) return;
 
-        const heroTitle = hero.querySelector("h1");
-        const heroLead = hero.querySelector("p");
-        const heroLinks = hero.querySelector("div.flex");
+            const heroTitle = hero.querySelector("h1");
+            const heroLead = hero.querySelector("p");
+            const heroLinks = hero.querySelector("div.flex");
 
-        let ticking = false;
+            let ticking = false;
 
-        const clamp = (n, min, max) => Math.min(Math.max(n, min), max);
+            const clamp = (n, min, max) => Math.min(Math.max(n, min), max);
 
-        const onScroll = () => {
-          if (ticking) return;
-          window.requestAnimationFrame(() => {
-            const y = window.scrollY || window.pageYOffset;
-            // Only apply within first ~600px
-            const factor = clamp(y / 600, 0, 1);
+            const onScroll = () => {
+                if (ticking) return;
+                window.requestAnimationFrame(() => {
+                    const y = window.scrollY || window.pageYOffset;
+                    // Only apply within first ~600px
+                    const factor = clamp(y / 600, 0, 1);
 
-            // Subtle layered movement (different speeds)
-            if (heroTitle)
-              heroTitle.style.transform = `translateY(${factor * 6}px) scale(${
+                    // Subtle layered movement (different speeds)
+                    if (heroTitle)
+                        heroTitle.style.transform = `translateY(${factor * 6}px) scale(${
                 1 + factor * 0.01
               })`;
-            if (heroLead)
-              heroLead.style.transform = `translateY(${factor * 12}px)`;
-            if (heroLinks)
-              heroLinks.style.transform = `translateY(${factor * 18}px)`;
+                    if (heroLead)
+                        heroLead.style.transform = `translateY(${factor * 12}px)`;
+                    if (heroLinks)
+                        heroLinks.style.transform = `translateY(${factor * 18}px)`;
 
-            ticking = false;
-          });
-          ticking = true;
-        };
+                    ticking = false;
+                });
+                ticking = true;
+            };
 
-        // Run once and on scroll
-        onScroll();
-        window.addEventListener("scroll", onScroll, { passive: true });
-      })();
-
-      // -----------------------------------------
-      // NEW: Active-section highlight (scrollspy)
-      // -----------------------------------------
-      (function setupScrollSpy() {
-        const navLinks = [...document.querySelectorAll('nav a[href^="#"]')];
-        if (!("IntersectionObserver" in window) || navLinks.length === 0)
-          return;
-
-        // Map id -> link
-        const linkById = new Map(
-          navLinks.map((a) => [
-            decodeURIComponent(a.getAttribute("href") || "").replace("#", ""),
-            a
-          ])
-        );
-
-        const sections = [...document.querySelectorAll("main section[id]")];
-
-        // Helper to activate a link
-        const activate = (id) => {
-          navLinks.forEach((a) => a.classList.remove("active"));
-          const link = linkById.get(id);
-          if (link) link.classList.add("active");
-        };
-
-        // Observe with generous middle viewport area
-        const spy = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                activate(entry.target.id);
-              }
+            // Run once and on scroll
+            onScroll();
+            window.addEventListener("scroll", onScroll, {
+                passive: true
             });
-          },
-          {
-            root: null,
-            threshold: 0.4, // section ~40% visible
-            rootMargin: "-10% 0px -50% 0px"
-          }
-        );
+        })();
 
-        sections.forEach((sec) => spy.observe(sec));
+        // -----------------------------------------
+        // NEW: Active-section highlight (scrollspy)
+        // -----------------------------------------
+        (function setupScrollSpy() {
+            const navLinks = [...document.querySelectorAll('nav a[href^="#"]')];
+            if (!("IntersectionObserver" in window) || navLinks.length === 0)
+                return;
 
-        // Also activate on hash change / initial load
-        const fromHash = () => {
-          const id = (location.hash || "").replace("#", "");
-          if (id) activate(id);
-        };
-        window.addEventListener("hashchange", fromHash);
-        fromHash();
-      })();
+            // Map id -> link
+            const linkById = new Map(
+                navLinks.map((a) => [
+                    decodeURIComponent(a.getAttribute("href") || "").replace("#", ""),
+                    a
+                ])
+            );
+
+            const sections = [...document.querySelectorAll("main section[id]")];
+
+            // Helper to activate a link
+            const activate = (id) => {
+                navLinks.forEach((a) => a.classList.remove("active"));
+                const link = linkById.get(id);
+                if (link) link.classList.add("active");
+            };
+
+            // Observe with generous middle viewport area
+            const spy = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            activate(entry.target.id);
+                        }
+                    });
+                }, {
+                    root: null,
+                    threshold: 0.4, // section ~40% visible
+                    rootMargin: "-10% 0px -50% 0px"
+                }
+            );
+
+            sections.forEach((sec) => spy.observe(sec));
+
+            // Also activate on hash change / initial load
+            const fromHash = () => {
+                const id = (location.hash || "").replace("#", "");
+                if (id) activate(id);
+            };
+            window.addEventListener("hashchange", fromHash);
+            fromHash();
+        })();
     </script>
-  </body>
+</body>
+
 </html>
