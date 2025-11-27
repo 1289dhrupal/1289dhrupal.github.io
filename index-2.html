@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dhrupal Shah | Backend Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet" />
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: The application is structured as a narrative portfolio, designed to guide a recruiter through a compelling story. It starts with a strong Hero section, immediately followed by a high-impact "Key Achievements" dashboard to showcase quantifiable results upfront. The user can then explore a chronological, interactive "Career Timeline" to see progression, an interactive "Skills Explorer" with a filterable chart to dive into technical capabilities, and a "Featured Projects" section for deep dives. This thematic structure is more engaging than a traditional resume and allows for non-linear exploration, enhancing usability and storytelling. -->
+    <!-- Visualization & Content Choices: 
+        - Key Achievements -> Goal: Inform/Impress -> Method: HTML/CSS stat cards with large numbers and icons. Interaction: None, purely for immediate visual impact. Justification: Grabs attention with quantifiable successes.
+        - Career Timeline -> Goal: Show Progression -> Method: HTML/CSS vertical timeline. Interaction: JavaScript-powered expand/collapse for job details. Justification: Keeps the UI clean while allowing deep dives into experience.
+        - Skills Explorer -> Goal: Organize/Compare -> Method: Chart.js Horizontal Bar Chart. Interaction: JS-powered filter buttons to update chart data by category (Backend, Frontend, etc.). Justification: Provides a dynamic and visually engaging way to explore technical depth, far superior to a static list.
+        - Featured Projects -> Goal: Detail/Showcase -> Method: HTML/CSS cards. Interaction: JavaScript-powered accordion for details. Justification: Presents detailed project information without cluttering the main view.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #fdfbf8;
+            color: #3d405b;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 500px;
+            }
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -31px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #81b29a;
+            border: 4px solid #fdfbf8;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav
+            class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-800">DS</div>
+            <div class="hidden md:flex space-x-8">
+                <a
+                    href="#impact"
+                    class="text-gray-600 hover:text-[#81B29A] transition-colors">Impact</a>
+                <a
+                    href="#timeline"
+                    class="text-gray-600 hover:text-[#81B29A] transition-colors">Timeline</a>
+                <a
+                    href="#skills"
+                    class="text-gray-600 hover:text-[#81B29A] transition-colors">Skills</a>
+                <a
+                    href="#projects"
+                    class="text-gray-600 hover:text-[#81B29A] transition-colors">Projects</a>
+                <a
+                    href="#contact"
+                    class="text-gray-600 hover:text-[#81B29A] transition-colors">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 md:py-20">
+        <section id="hero" class="text-center mb-20">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">
+                Dhrupal Shah
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 mb-8">
+                Pragmatic Backend Engineer | MSc Advanced Computer Science
+                (Distinction)
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a
+                    href="https://github.com/"
+                    target="_blank"
+                    class="bg-[#3D405B] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#2c2e41] transition-transform transform hover:scale-105">GitHub</a>
+                <a
+                    href="https://www.linkedin.com/"
+                    target="_blank"
+                    class="bg-white border border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-transform transform hover:scale-105">LinkedIn</a>
+            </div>
+        </section>
+
+        <section id="impact" class="mb-20">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">
+                Key Career Achievements
+            </h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                This section highlights the most significant, quantifiable results
+                from my professional experience. These metrics represent my focus on
+                automation, efficiency, and delivering tangible business value through
+                robust engineering solutions.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div
+                    class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform">
+                    <div class="text-4xl font-bold text-[#E07A5F] mb-2">50%</div>
+                    <p class="text-gray-600 font-medium">
+                        Reduction in Manual Workflows
+                    </p>
+                </div>
+                <div
+                    class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform">
+                    <div class="text-4xl font-bold text-[#3D405B] mb-2">300%</div>
+                    <p class="text-gray-600 font-medium">Faster API Response Times</p>
+                </div>
+                <div
+                    class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform">
+                    <div class="text-4xl font-bold text-[#81B29A] mb-2">>95%</div>
+                    <p class="text-gray-600 font-medium">Reduction in Build Times</p>
+                </div>
+                <div
+                    class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform">
+                    <div class="text-4xl font-bold text-[#F2CC8F] mb-2">40%</div>
+                    <p class="text-gray-600 font-medium">
+                        Faster Deployments with Docker
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="mb-20">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">
+                Interactive Career Timeline
+            </h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                My professional journey has been focused on growth within fast-paced
+                startup environments. This timeline provides a chronological overview
+                of my roles, responsibilities, and key accomplishments. Click on any
+                role to expand and see the detailed contributions.
+            </p>
+            <div
+                id="timeline-container"
+                class="relative border-l-2 border-gray-200 ml-4 md:ml-10"></div>
+        </section>
+
+        <section id="skills" class="mb-20">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">
+                Skills Explorer
+            </h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">
+                This chart provides a dynamic overview of my technical competencies. I
+                am a versatile engineer with a strong foundation in backend
+                technologies and experience across the stack. Use the filters to
+                explore my skills in different domains.
+            </p>
+            <div
+                class="flex justify-center space-x-2 md:space-x-4 mb-8"
+                id="skill-filters">
+                <button
+                    data-filter="all"
+                    class="skill-btn bg-[#3D405B] text-white px-4 py-2 rounded-lg font-semibold">
+                    All
+                </button>
+                <button
+                    data-filter="backend"
+                    class="skill-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-semibold border border-gray-300">
+                    Backend
+                </button>
+                <button
+                    data-filter="frontend"
+                    class="skill-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-semibold border border-gray-300">
+                    Frontend
+                </button>
+                <button
+                    data-filter="devops"
+                    class="skill-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-semibold border border-gray-300">
+                    DevOps & Cloud
+                </button>
+                <button
+                    data-filter="databases"
+                    class="skill-btn bg-white text-gray-700 px-4 py-2 rounded-lg font-semibold border border-gray-300">
+                    Databases
+                </button>
+            </div>
+            <div class="bg-white p-4 md:p-8 rounded-xl shadow-lg">
+                <div class="chart-container">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="mb-20">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">
+                Featured Projects
+            </h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                Beyond my professional roles, I enjoy building solutions that solve
+                real-world problems. These projects highlight my ability to manage a
+                product from concept to completion, combining technical skills with a
+                product-focused mindset. Click to learn more about each project.
+            </p>
+            <div id="projects-container" class="space-y-6"></div>
+        </section>
+
+        <section
+            id="contact"
+            class="text-center bg-white py-16 rounded-xl shadow-lg">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">
+                Let's Connect
+            </h2>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-8">
+                I'm always open to discussing new projects, creative ideas, or
+                opportunities to be part of an ambitious team. Feel free to reach out.
+            </p>
+            <a
+                href="mailto:dhrupal.shah@outlook.in"
+                class="inline-block bg-[#81B29A] text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-[#6a947f] transition-transform transform hover:scale-105">dhrupal.shah@outlook.in</a>
+        </section>
+    </main>
+
+    <footer class="bg-gray-100 mt-20">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-600">
+            <p>&copy; 2024 Dhrupal Shah. All Rights Reserved.</p>
+            <p class="mt-2">Built with passion and code.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const timelineData = [{
+                    role: "Senior Software Engineer",
+                    company: "Sellergize, Remote",
+                    date: "Mar 2024 - Present",
+                    details: [
+                        "Owned the end-to-end development of a scalable Laravel-based backend system to manage and automate workflows, reducing manual effort by 50% (~40 hrs/month).",
+                        "Designed and maintained reliable APIs, including the integration of Google Pub/Sub for data streaming and the Google Ads API for analysing regional web traffic.",
+                        "Led the deployment of new projects across cloud environments, managing CI/CD pipelines, release automation, and rollback strategies.",
+                        "Mentored a team of 4 developers, enforcing clean code practices and improving system maintainability."
+                    ]
+                },
+                {
+                    role: "Product Engineer",
+                    company: "Seclore, Mumbai, India",
+                    date: "Sep 2022 - Sep 2023",
+                    details: [
+                        "Delivered pragmatic solutions to improve system health, developing automation scripts that cut build times from over 1.5 days to just 2 hours.",
+                        "Reduced client-server implementation time by 40% by containerizing applications with Docker.",
+                        "Independently designed and built a robust Spring Boot-based API service to return geographical location data from an IP address.",
+                        "Ensured system reliability by conducting rigorous unit testing, resulting in zero critical post-release bugs."
+                    ]
+                },
+                {
+                    role: "Software Engineer",
+                    company: "Sellergize, Mumbai, India",
+                    date: "Aug 2020 - Sep 2022",
+                    details: [
+                        "Revamped a core user-facing panel by building new REST APIs and working with a Vue.js frontend, cutting server response times by 300%.",
+                        "Improved overall system efficiency by at least 20% through targeted code refactoring and bug fixes.",
+                        "Increased sales & retention by 20% via custom WordPress plugins/themes with 15 new features."
+                    ]
+                }
+            ];
+
+            const projectsData = [{
+                    title: "Academic Git Monitoring System",
+                    subtitle: "MSc Dissertation Project",
+                    description: "Managed an end-to-end project to build a full-stack tool that integrated with GitHub and GitLab APIs to analyse commit data and track student contributions. The system used data to provide insights into collaboration patterns and code quality, improving the fairness of academic evaluations by 50%. This project showcased my ability to take a concept from idea to a fully functional, impactful solution.",
+                    stack: [
+                        "PHP",
+                        "Laravel",
+                        "Vue.js",
+                        "MySQL",
+                        "OpenAI API",
+                        "GitLab API"
+                    ]
+                },
+                {
+                    title: "Dairy Transaction Processing System",
+                    subtitle: "Freelancing Project",
+                    description: "Developed a comprehensive system for a local dairy business that streamlined invoicing, customer data management, and transaction processing. The solution significantly reduced manual data entry and processing time by 60%, providing the business with accurate and timely financial reports.",
+                    stack: ["PHP", "Laravel", "MySQL", "HTML/CSS"]
+                }
+            ];
+
+            const skillsData = {
+                all: [{
+                        skill: "PHP",
+                        level: 8.5,
+                        category: "backend"
+                    },
+                    {
+                        skill: "Laravel",
+                        level: 6.5,
+                        category: "backend"
+                    },
+                    {
+                        skill: "Java",
+                        level: 9.0,
+                        category: "backend"
+                    },
+                    {
+                        skill: "Spring Boot",
+                        level: 6.5,
+                        category: "backend"
+                    },
+                    {
+                        skill: "Python",
+                        level: 7.5,
+                        category: "backend"
+                    },
+                    {
+                        skill: "Node.js",
+                        level: 8.0,
+                        category: "backend"
+                    },
+                    {
+                        skill: "REST API Design",
+                        level: 9.0,
+                        category: "backend"
+                    },
+                    {
+                        skill: "Vue.js",
+                        level: 8.5,
+                        category: "frontend"
+                    },
+                    {
+                        skill: "React.js",
+                        level: 5.5,
+                        category: "frontend"
+                    },
+                    {
+                        skill: "JavaScript / TS",
+                        level: 8.0,
+                        category: "frontend"
+                    },
+                    {
+                        skill: "HTML / CSS",
+                        level: 8.0,
+                        category: "frontend"
+                    },
+                    {
+                        skill: "GCP",
+                        level: 7.5,
+                        category: "devops"
+                    },
+                    {
+                        skill: "Docker",
+                        level: 6.0,
+                        category: "devops"
+                    },
+                    {
+                        skill: "CI/CD Pipelines",
+                        level: 6.0,
+                        category: "devops"
+                    },
+                    {
+                        skill: "Git",
+                        level: 9.0,
+                        category: "devops"
+                    },
+                    {
+                        skill: "PostgreSQL",
+                        level: 5.0,
+                        category: "databases"
+                    },
+                    {
+                        skill: "MySQL",
+                        level: 7.5,
+                        category: "databases"
+                    },
+                    {
+                        skill: "MongoDB",
+                        level: 5.0,
+                        category: "databases"
+                    },
+                    {
+                        skill: "Oracle / MSSQL",
+                        level: 7.5,
+                        category: "databases"
+                    }
+                ],
+                backend: [{
+                        skill: "PHP",
+                        level: 8.5,
+                        category: "backend"
+                    },
+                    {
+                        skill: "Laravel",
+                        level: 6.5,
+                        category: "backend"
+                    },
+                    {
+                        skill: "Java",
+                        level: 9.0,
+                        category: "backend"
+                    },
+                    {
+                        skill: "Spring Boot",
+                        level: 6.5,
+                        category: "backend"
+                    },
+                    {
+                        skill: "Python",
+                        level: 7.5,
+                        category: "backend"
+                    },
+                    {
+                        skill: "Node.js",
+                        level: 8.0,
+                        category: "backend"
+                    },
+                    {
+                        skill: "REST API Design",
+                        level: 9.0,
+                        category: "backend"
+                    }
+                ],
+                frontend: [{
+                        skill: "Vue.js",
+                        level: 8.5,
+                        category: "frontend"
+                    },
+                    {
+                        skill: "React.js",
+                        level: 5.5,
+                        category: "frontend"
+                    },
+                    {
+                        skill: "JavaScript / TS",
+                        level: 8.0,
+                        category: "frontend"
+                    },
+                    {
+                        skill: "HTML / CSS",
+                        level: 8.0,
+                        category: "frontend"
+                    }
+                ],
+                devops: [{
+                        skill: "GCP",
+                        level: 7.5,
+                        category: "devops"
+                    },
+                    {
+                        skill: "Docker",
+                        level: 6.0,
+                        category: "devops"
+                    },
+                    {
+                        skill: "CI/CD Pipelines",
+                        level: 6.0,
+                        category: "devops"
+                    },
+                    {
+                        skill: "Git",
+                        level: 9.0,
+                        category: "devops"
+                    }
+                ],
+                databases: [{
+                        skill: "PostgreSQL",
+                        level: 5.0,
+                        category: "databases"
+                    },
+                    {
+                        skill: "MySQL",
+                        level: 7.5,
+                        category: "databases"
+                    },
+                    {
+                        skill: "MongoDB",
+                        level: 5.0,
+                        category: "databases"
+                    },
+                    {
+                        skill: "Oracle / MSSQL",
+                        level: 7.5,
+                        category: "databases"
+                    }
+                ]
+            };
+
+            const timelineContainer = document.getElementById("timeline-container");
+            timelineData.forEach((item) => {
+                const div = document.createElement("div");
+                div.className = "relative pl-8 pb-8 timeline-item";
+                div.innerHTML = `
+                    <div class="cursor-pointer group">
+                        <h3 class="text-xl font-bold text-gray-800">${
+                          item.role
+                        }</h3>
+                        <p class="text-md text-gray-600">${item.company}</p>
+                        <p class="text-sm text-gray-500 mb-2">${item.date}</p>
+                        <span class="absolute right-0 top-1 text-gray-400 group-hover:text-[#81B29A] transition-transform transform rotate-0 group-[.open]:rotate-180">▼</span>
+                    </div>
+                    <div class="details hidden mt-4 pl-4 border-l-2 border-gray-200">
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            ${item.details.map((d) => `<li>${d}</li>`).join("")}
+                        </ul>
+                    </div>
+                `;
+                timelineContainer.appendChild(div);
+
+                div.querySelector(".group").addEventListener("click", () => {
+                    div.querySelector(".group").classList.toggle("open");
+                    div.querySelector(".details").classList.toggle("hidden");
+                });
+            });
+
+            const projectsContainer = document.getElementById("projects-container");
+            projectsData.forEach((project) => {
+                const div = document.createElement("div");
+                div.className = "bg-white rounded-xl shadow-lg overflow-hidden";
+                div.innerHTML = `
+                    <div class="p-6 cursor-pointer project-header">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">${
+                                  project.title
+                                }</h3>
+                                <p class="text-md text-gray-500">${
+                                  project.subtitle
+                                }</p>
+                            </div>
+                            <span class="text-gray-400 transform rotate-0 group-[.open]:-rotate-180 transition-transform">▼</span>
+                        </div>
+                    </div>
+                    <div class="project-details hidden p-6 border-t border-gray-200">
+                        <p class="text-gray-700 mb-4">${project.description}</p>
+                        <div class="flex flex-wrap gap-2">
+                            ${project.stack
+                              .map(
+                                (s) =>
+                                  `<span class="bg-gray-200 text-gray-700 text-sm font-medium px-3 py-1 rounded-full">${s}</span>`
+                              )
+                              .join("")}
+                        </div>
+                    </div>
+                `;
+                projectsContainer.appendChild(div);
+
+                div
+                    .querySelector(".project-header")
+                    .addEventListener("click", (e) => {
+                        e.currentTarget.parentElement
+                            .querySelector(".project-details")
+                            .classList.toggle("hidden");
+                        e.currentTarget
+                            .querySelector("span")
+                            .classList.toggle("-rotate-180");
+                    });
+            });
+
+            const ctx = document.getElementById("skillsChart").getContext("2d");
+            let skillsChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: "Proficiency",
+                        data: [],
+                        backgroundColor: "#81B29A",
+                        borderColor: "#6a947f",
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: "y",
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 10,
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ` Proficiency: ${context.raw} / 10`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            function updateChart(filter) {
+                const data = skillsData[filter];
+                skillsChart.data.labels = data.map((item) => item.skill);
+                skillsChart.data.datasets[0].data = data.map((item) => item.level);
+                skillsChart.update();
+            }
+
+            document
+                .getElementById("skill-filters")
+                .addEventListener("click", (e) => {
+                    if (e.target.classList.contains("skill-btn")) {
+                        const filter = e.target.dataset.filter;
+                        updateChart(filter);
+
+                        document.querySelectorAll(".skill-btn").forEach((btn) => {
+                            btn.classList.remove("bg-[#3D405B]", "text-white");
+                            btn.classList.add("bg-white", "text-gray-700");
+                        });
+
+                        e.target.classList.add("bg-[#3D405B]", "text-white");
+                        e.target.classList.remove("bg-white", "text-gray-700");
+                    }
+                });
+
+            updateChart("all");
+        });
+    </script>
+</body>
+
+</html>
