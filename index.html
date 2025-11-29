@@ -1,660 +1,243 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhrupal Shah | Interactive Portfolio</title>
+    <title>Dhrupal Shah | Senior Software Engineer</title>
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .chart-container { position: relative; width: 100%; max-width: 600px; margin: 0 auto; height: 300px; }
-        .timeline-line { position: absolute; left: 24px; top: 0; bottom: 0; width: 2px; background-color: #e2e8f0; z-index: 0; }
-        .active-tab { border-bottom: 2px solid #2563eb; color: #2563eb; font-weight: 600; }
-        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
-        .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-    </style>
-    <!-- Chosen Palette: Slate & Blue (Professional, Tech-focused) -->
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-100 selection:text-blue-900">
 
-    <!-- Application Structure Plan: 
-         1. Header/Hero: Instant identity & contact info.
-         2. "The Impact Dashboard": High-level metrics visualized immediately.
-         3. "Deep Dive" Experience: Interactive timeline revealing the detailed "Stories" from the notes.
-         4. Skills Matrix: Radar chart for technical spread.
-         5. Project Lab: Filterable grid for projects (Academic vs Pro).
-         6. Education & Certs: List view for credentials.
-    -->
-
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <!-- Navigation (Mobile Optimized) -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
+            <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <span class="text-2xl font-bold text-slate-900 tracking-tight">Dhrupal<span class="text-blue-600">.Dev</span></span>
+                    <span class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Dhrupal<span class="text-blue-600">.Dev</span></span>
                 </div>
+                <!-- Desktop Nav -->
                 <div class="hidden md:flex space-x-8 items-center">
                     <button onclick="scrollToSection('impact')" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">Impact</button>
                     <button onclick="scrollToSection('experience')" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">Experience</button>
                     <button onclick="scrollToSection('skills')" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">Skills</button>
                     <button onclick="scrollToSection('projects')" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">Projects</button>
-                    <a href="mailto:dhrupal.shah@outlook.in" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-lg shadow-blue-600/20">Contact Me</a>
+                    <a href="mailto:dhrupal.shah@outlook.in" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-lg shadow-blue-600/20">Contact</a>
+                </div>
+                <!-- Mobile Nav Button (Simple Scroll) -->
+                <div class="md:hidden flex space-x-4 text-sm font-medium">
+                    <button onclick="scrollToSection('experience')" class="text-blue-600">Exp</button>
+                    <button onclick="scrollToSection('projects')" class="text-blue-600">Proj</button>
                 </div>
             </div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="bg-white border-b border-slate-200 pt-16 pb-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-            <div class="md:col-span-2 space-y-6">
-                <div class="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm font-semibold border border-blue-100">
-                    <span class="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
-                    Open to Relocation (UK)
-                </div>
-                <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                    Senior Software Engineer & <br>
-                    <span class="text-blue-600">Systems Thinker</span>
-                </h1>
-                <p class="text-xl text-slate-600 max-w-2xl leading-relaxed">
-                    Specializing in <strong>PHP/Laravel</strong>, <strong>MySQL Engineering</strong>, and <strong>Cloud Architecture</strong>. 
-                    Proven track record of cutting manual workflows by 50% and architecting AI-driven solutions.
-                </p>
-                <div class="flex flex-wrap gap-4 text-sm font-medium text-slate-600">
-                    <a href="https://linkedin.com/in/dhrupal-shah" target="_blank" class="flex items-center gap-2 hover:text-blue-600 transition-colors">
-                        <span class="text-xl">💼</span> LinkedIn
-                    </a>
-                    <a href="https://github.com/1289dhrupal" target="_blank" class="flex items-center gap-2 hover:text-blue-600 transition-colors">
-                        <span class="text-xl">💻</span> GitHub
-                    </a>
-                    <a href="https://www.hackerrank.com/1289dhrupal" target="_blank" class="flex items-center gap-2 hover:text-blue-600 transition-colors">
-                        <span class="text-xl">🏆</span> HackerRank (Gold)
-                    </a>
-                    <div class="flex items-center gap-2">
-                        <span class="text-xl">📍</span> Leicester, UK
-                    </div>
+    </nav><!-- Hero Section -->
+<header class="bg-white border-b border-slate-200 pt-12 pb-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+        <div class="md:col-span-2 space-y-6">
+            <div class="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs sm:text-sm font-semibold border border-blue-100">
+                <span class="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
+                Open to Relocation (UK)
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                Senior Software Engineer & <br>
+                <span class="text-blue-600">Systems Thinker</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-600 max-w-2xl leading-relaxed">
+                Specializing in <strong>PHP/Laravel</strong>, <strong>MySQL Engineering</strong>, and <strong>Cloud Architecture</strong>.
+                Proven track record of cutting manual workflows by 50% and architecting AI-driven solutions.
+            </p>
+            <div class="flex flex-wrap gap-4 text-sm font-medium text-slate-600">
+                <a href="https://linkedin.com/in/dhrupal-shah" target="_blank" class="flex items-center gap-2 hover:text-blue-600 transition-colors">
+                    <span class="text-xl">💼</span> LinkedIn
+                </a>
+                <a href="https://github.com/1289dhrupal" target="_blank" class="flex items-center gap-2 hover:text-blue-600 transition-colors">
+                    <span class="text-xl">💻</span> GitHub
+                </a>
+                <div class="flex items-center gap-2">
+                    <span class="text-xl">📍</span> Leicester, UK
                 </div>
             </div>
-            
-            <!-- Quick Stats Card -->
-            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
-                <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Core Expertise</h3>
-                <div class="space-y-4">
-                    <div>
-                        <div class="flex justify-between text-sm font-medium mb-1">
-                            <span>Backend Architecture (PHP/Laravel)</span>
-                            <span class="text-blue-600">4 Years</span>
-                        </div>
-                        <div class="w-full bg-slate-200 rounded-full h-2">
-                            <div class="bg-blue-600 h-2 rounded-full" style="width: 100%"></div>
-                        </div>
+        </div>
+
+        <!-- Quick Stats Card -->
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm hidden md:block">
+            <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Core Expertise</h3>
+            <div class="space-y-4">
+                <div>
+                    <div class="flex justify-between text-sm font-medium mb-1">
+                        <span>Backend Architecture</span>
+                        <span class="text-blue-600">4 Years</span>
                     </div>
-                    <div>
-                        <div class="flex justify-between text-sm font-medium mb-1">
-                            <span>Database Engineering (MySQL)</span>
-                            <span class="text-blue-600">3.5 Years</span>
-                        </div>
-                        <div class="w-full bg-slate-200 rounded-full h-2">
-                            <div class="bg-blue-600 h-2 rounded-full" style="width: 85%"></div>
-                        </div>
+                    <div class="w-full bg-slate-200 rounded-full h-2">
+                        <div class="bg-blue-600 h-2 rounded-full" style="width: 100%"></div>
                     </div>
-                    <div>
-                        <div class="flex justify-between text-sm font-medium mb-1">
-                            <span>Cloud & DevOps (GCP/CI-CD)</span>
-                            <span class="text-blue-600">1.5 Years</span>
-                        </div>
-                        <div class="w-full bg-slate-200 rounded-full h-2">
-                            <div class="bg-blue-600 h-2 rounded-full" style="width: 60%"></div>
-                        </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm font-medium mb-1">
+                        <span>Database (MySQL)</span>
+                        <span class="text-blue-600">3.5 Years</span>
+                    </div>
+                    <div class="w-full bg-slate-200 rounded-full h-2">
+                        <div class="bg-blue-600 h-2 rounded-full" style="width: 85%"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header><!-- SECTION: Impact Dashboard -->
+<section id="impact" class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-10">
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Impact Analytics</h2>
+            <p class="text-slate-600 mt-2 text-sm sm:text-base">Quantifiable achievements from my professional career.</p>
+        </div>
 
-    <!-- SECTION: Impact Dashboard (Visualization of Key Metrics) -->
-    <section id="impact" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-12">
-                <h2 class="text-3xl font-bold text-slate-900">Impact Analytics</h2>
-                <p class="text-slate-600 mt-2">Quantifiable achievements from my professional career.</p>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Text Stats Grid (Populated via JS) -->
+            <div id="impact-stats-grid" class="grid grid-cols-2 gap-4 sm:gap-6">
+                <!-- JS injects stats here -->
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Text Stats -->
-                <div class="grid grid-cols-2 gap-6">
-                    <div class="p-6 bg-blue-50 rounded-xl border border-blue-100">
-                        <div class="text-4xl font-extrabold text-blue-600 mb-2">50%</div>
-                        <div class="text-sm font-semibold text-blue-900">Workflow Reduction</div>
-                        <p class="text-xs text-blue-700 mt-1">Via Laravel Automation</p>
-                    </div>
-                    <div class="p-6 bg-emerald-50 rounded-xl border border-emerald-100">
-                        <div class="text-4xl font-extrabold text-emerald-600 mb-2">300%</div>
-                        <div class="text-sm font-semibold text-emerald-900">Performance Boost</div>
-                        <p class="text-xs text-emerald-700 mt-1">API Refactoring (Vue/PHP)</p>
-                    </div>
-                    <div class="p-6 bg-purple-50 rounded-xl border border-purple-100">
-                        <div class="text-4xl font-extrabold text-purple-600 mb-2">2 min</div>
-                        <div class="text-sm font-semibold text-purple-900">Release Time</div>
-                        <p class="text-xs text-purple-700 mt-1">Down from hours (CI/CD)</p>
-                    </div>
-                    <div class="p-6 bg-amber-50 rounded-xl border border-amber-100">
-                        <div class="text-4xl font-extrabold text-amber-600 mb-2">0</div>
-                        <div class="text-sm font-semibold text-amber-900">Critical Bugs</div>
-                        <p class="text-xs text-amber-700 mt-1">Via TDD & Rigorous Testing</p>
+            <!-- Visualization -->
+            <div class="chart-container hidden sm:block">
+                <canvas id="impactChart"></canvas>
+            </div>
+        </div>
+    </div>
+</section><!-- SECTION: Experience Timeline -->
+<section id="experience" class="py-12 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-10">
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Professional Journey</h2>
+            <p class="text-slate-600 mt-2 text-sm sm:text-base">Tap on any role to see the <span class="font-semibold text-blue-600">"Deep Dive Stories"</span>.</p>
+        </div>
+
+        <!-- Desktop: Side-by-Side (Hidden on Mobile) -->
+        <div class="hidden lg:grid lg:grid-cols-3 gap-8">
+            <!-- List (Populated via JS) -->
+            <div class="lg:col-span-1 space-y-4 relative" id="role-list-desktop">
+                <div class="timeline-line"></div>
+            </div>
+
+            <!-- Detail Panel (Populated via JS) -->
+            <div class="lg:col-span-2">
+                <div id="role-detail-panel-desktop" class="bg-white rounded-2xl shadow-lg border border-slate-200 p-6 sm:p-8 sticky top-24 transition-all duration-300 min-h-[300px]">
+                    <div class="flex items-center justify-center h-full text-slate-400">
+                        Select a role to view details
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- Visualization -->
+        <!-- Mobile: Accordion List (Visible only on Mobile) -->
+        <div class="lg:hidden space-y-4" id="role-list-mobile">
+            <!-- Populated via JS -->
+        </div>
+    </div>
+</section><!-- SECTION: Technical Skills (Radar Chart) -->
+<section id="skills" class="py-16 bg-white border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            <!-- Skill Text Content (Dynamic) -->
+            <div>
+                <h2 class="text-3xl font-bold text-slate-900 mb-6">Technical Arsenal</h2>
+                <div id="skills-text-container" class="space-y-6">
+                    <!-- JS Injects Skills Here -->
+                </div>
+            </div>
+
+            <!-- Radar Chart -->
+            <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 flex items-center justify-center">
                 <div class="chart-container">
-                    <canvas id="impactChart"></canvas>
+                    <canvas id="skillsRadar"></canvas>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- SECTION: Experience Timeline (Deep Dive Interaction) -->
-    <section id="experience" class="py-16 bg-slate-50 border-t border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-12">
-                <h2 class="text-3xl font-bold text-slate-900">Professional Journey</h2>
-                <p class="text-slate-600 mt-2">Click on any role to see the <span class="font-semibold text-blue-600">"Deep Dive Stories"</span>.</p>
+    </div>
+</section><!-- SECTION: Project Portfolio -->
+<section id="projects" class="py-12 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-8">
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Project Portfolio</h2>
+                <p class="text-slate-600 mt-1 text-sm">Select a category to filter.</p>
             </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Timeline List -->
-                <div class="lg:col-span-1 space-y-4 relative" id="role-list">
-                    <div class="timeline-line"></div>
-                    <!-- Role Items inserted via JS -->
-                </div>
-
-                <!-- Detail View Panel -->
-                <div class="lg:col-span-2">
-                    <div id="role-detail-panel" class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 h-full sticky top-24 transition-all duration-300">
-                        <div class="flex items-center justify-center h-full text-slate-400">
-                            Select a role to view details
-                        </div>
-                    </div>
-                </div>
+            <div class="flex space-x-2 mt-4 md:mt-0 overflow-x-auto pb-2 scrollbar-hide">
+                <button onclick="filterProjects('all')" class="project-filter active-filter px-4 py-2 bg-white rounded-full text-sm font-medium text-slate-600 border border-slate-200 whitespace-nowrap">All</button>
+                <button onclick="filterProjects('professional')" class="project-filter px-4 py-2 bg-white rounded-full text-sm font-medium text-slate-600 border border-slate-200 whitespace-nowrap">Professional</button>
+                <button onclick="filterProjects('academic')" class="project-filter px-4 py-2 bg-white rounded-full text-sm font-medium text-slate-600 border border-slate-200 whitespace-nowrap">Academic</button>
+                <button onclick="filterProjects('freelance')" class="project-filter px-4 py-2 bg-white rounded-full text-sm font-medium text-slate-600 border border-slate-200 whitespace-nowrap">Freelance</button>
             </div>
         </div>
-    </section>
 
-    <!-- SECTION: Technical Skills (Radar Chart) -->
-    <section id="skills" class="py-16 bg-white border-t border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                
-                <!-- Skill Text Content -->
+        <div id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Project Cards Injected via JS -->
+        </div>
+    </div>
+</section>
+
+<div id="archModal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true">
+
+    <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm modal-backdrop" onclick="closeArchModal()"></div>
+
+    <div class="relative z-10 flex items-center justify-center h-screen p-4 sm:p-6 pointer-events-none">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-7xl h-[90vh] flex flex-col overflow-hidden border border-slate-200 animate-modal-in pointer-events-auto">
+
+            <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
                 <div>
-                    <h2 class="text-3xl font-bold text-slate-900 mb-6">Technical Arsenal</h2>
-                    <div class="space-y-6">
-                        <div>
-                            <h3 class="font-bold text-lg text-slate-800 mb-2 flex items-center"><span class="mr-2">🐘</span> PHP Ecosystem (Expert)</h3>
-                            <p class="text-slate-600 text-sm">4 Years exp. Deep expertise in <strong>Laravel</strong> automation, API architecture, and legacy optimization.</p>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-lg text-slate-800 mb-2 flex items-center"><span class="mr-2">🗄️</span> Database Engineering (Expert)</h3>
-                            <p class="text-slate-600 text-sm">MySQL specialist. Proficient in <strong>Indexing, Query Optimization, Triggers,</strong> and Stored Procedures.</p>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-lg text-slate-800 mb-2 flex items-center"><span class="mr-2">☁️</span> Cloud & DevOps (Solid)</h3>
-                            <p class="text-slate-600 text-sm">Production GCP experience (Compute Engine, Pub/Sub). Ownership of deployment pipelines and Webhooks.</p>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-lg text-slate-800 mb-2 flex items-center"><span class="mr-2">🤖</span> AI Integration (Specialist)</h3>
-                            <p class="text-slate-600 text-sm">Practical implementation of <strong>OpenAI Function Calling</strong> for structured data normalization in production apps.</p>
-                        </div>
-                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 font-sans">System Architecture</h3>
+                    <p class="text-sm text-slate-500 font-sans">Interactive Data Flow Diagram</p>
                 </div>
+                <button onclick="closeArchModal()" class="p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-all duration-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
 
-                <!-- Radar Chart -->
-                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 flex items-center justify-center">
-                    <div class="chart-container">
-                        <canvas id="skillsRadar"></canvas>
-                    </div>
-                </div>
+            <div class="flex-1 bg-slate-50 relative modal-content-scroll overflow-hidden">
+                <iframe src="diagram.html" class="w-full h-full border-0" title="Architecture Diagram"></iframe>
             </div>
         </div>
-    </section>
-
-    <!-- SECTION: Project Portfolio (Grid & Filter) -->
-    <section id="projects" class="py-16 bg-slate-50 border-t border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-center justify-between mb-8">
-                <div>
-                    <h2 class="text-3xl font-bold text-slate-900">Project Portfolio</h2>
-                    <p class="text-slate-600 mt-1">Select a category to filter.</p>
-                </div>
-                <div class="flex space-x-2 mt-4 md:mt-0 overflow-x-auto pb-2">
-                    <button onclick="filterProjects('all')" class="project-filter active-filter px-4 py-2 bg-white rounded-full text-sm font-medium text-slate-600 border border-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors">All</button>
-                    <button onclick="filterProjects('professional')" class="project-filter px-4 py-2 bg-white rounded-full text-sm font-medium text-slate-600 border border-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors">Professional</button>
-                    <button onclick="filterProjects('academic')" class="project-filter px-4 py-2 bg-white rounded-full text-sm font-medium text-slate-600 border border-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors">Academic/MSc</button>
-                    <button onclick="filterProjects('freelance')" class="project-filter px-4 py-2 bg-white rounded-full text-sm font-medium text-slate-600 border border-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors">Freelance</button>
+    </div>
+</div><!-- SECTION: Education & Certs -->
+<section class="py-12 bg-white border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Education -->
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center"><span class="text-xl mr-2">🎓</span> Education</h2>
+                <div id="education-list" class="space-y-6">
+                    <!-- JS Injects Education Data Here -->
                 </div>
             </div>
 
-            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Project Cards Injected via JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: Education & Certs -->
-    <section class="py-16 bg-white border-t border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- Education -->
-                <div>
-                    <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center"><span class="bg-blue-100 text-blue-600 p-2 rounded-lg mr-3 text-xl">🎓</span> Education</h2>
-                    <div class="space-y-6">
-                        <div class="border-l-4 border-blue-600 pl-4">
-                            <h3 class="font-bold text-lg">MSc Advanced Computer Science</h3>
-                            <div class="text-blue-600 font-medium text-sm">University of Leicester, UK (Distinction)</div>
-                            <p class="text-slate-500 text-sm mt-1">2023 - 2024</p>
-                            <p class="text-slate-600 text-sm mt-2"><strong>Modules:</strong> Big Data (Spark), Cloud Computing (Hadoop), Agile Automation (Gradle), Advanced C++.</p>
-                        </div>
-                        <div class="border-l-4 border-blue-600 pl-4">
-                            <h3 class="font-bold text-lg">BE Computer Engineering</h3>
-                            <div class="text-slate-900 font-medium text-sm">Ramrao Adik Institute of Technology, India</div>
-                            <p class="text-slate-500 text-sm mt-1">2016 - 2020</p>
-                            <p class="text-slate-600 text-sm mt-2"><strong>Award:</strong> 2nd Runner Up (3rd/861) in National Coding Competition.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Certifications -->
-                <div>
-                    <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center"><span class="bg-amber-100 text-amber-600 p-2 rounded-lg mr-3 text-xl">📜</span> Certifications</h2>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <span class="text-green-500 mr-2">✓</span>
-                            <div>
-                                <a href="https://www.linkedin.com/learning/certificates/8fd09d2cab366281d5df18e0c4872201dc2ccdbe8ddc027221519924c58774ec?trk=share_certificate" target="_blank" class="font-medium text-slate-800 hover:text-blue-600 underline decoration-dotted">Laravel Essential Training</a>
-                                <span class="text-xs text-slate-500 block">LinkedIn Learning</span>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-green-500 mr-2">✓</span>
-                            <div>
-                                <a href="https://www.hackerrank.com/certificates/1cffca3019ca" target="_blank" class="font-medium text-slate-800 hover:text-blue-600 underline decoration-dotted">Problem Solving (Basic) - Gold Badge</a>
-                                <span class="text-xs text-slate-500 block">HackerRank</span>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-green-500 mr-2">✓</span>
-                            <div>
-                                <a href="https://www.hackerrank.com/certificates/d5ddac06581a" target="_blank" class="font-medium text-slate-800 hover:text-blue-600 underline decoration-dotted">Java (Basic)</a>
-                                <span class="text-xs text-slate-500 block">HackerRank</span>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-green-500 mr-2">✓</span>
-                            <div>
-                                <span class="font-medium text-slate-800">Java Programming (Offline Course)</span>
-                                <span class="text-xs text-slate-500 block">Covered Java 11 SE, OCP/OCJ Modules (Early 2019)</span>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-green-500 mr-2">✓</span>
-                            <div>
-                                <a href="https://www.datacamp.com/statement-of-accomplishment/track/ef287fd01021131b76d9f376778eb6f63cba172c" target="_blank" class="font-medium text-slate-800 hover:text-blue-600 underline decoration-dotted">Data Scientist with R Track</a>
-                                <span class="text-xs text-slate-500 block">DataCamp</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+            <!-- Certifications -->
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center"><span class="text-xl mr-2">📜</span> Certifications</h2>
+                <ul id="certification-list" class="space-y-3 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <!-- JS Injects Cert Data Here -->
+                </ul>
             </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm">
-        <p>Built from source report "master_resume_notes.md" &bull; © 2025 Dhrupal Shah</p>
+    </div>
+</section>    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-xs sm:text-sm">
+        <p>Built with PHP, JS & Tailwind &bull; © 2025 Dhrupal Shah</p>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        // --- DATA SOURCE ---
-        const experienceData = [
-            {
-                id: 1,
-                role: "Senior Software Engineer",
-                company: "Sellergize (Remote)",
-                period: "Jan 2025 – Present",
-                type: "Full-time (High Autonomy)",
-                icon: "🚀",
-                stories: [
-                    { title: "50% Workflow Reduction", desc: "Designed a Laravel admin panel automating manual data entry, saving ~40 hours/month." },
-                    { title: "Scalable Streaming", desc: "Integrated Google Pub/Sub for real-time data streaming, replacing legacy synchronous processing." },
-                    { title: "Mobile App Backend", desc: "Led architecture for the Mobile Shopping App Backend. Built a crawling layer with Selenium/Python and an AI Parsing layer using OpenAI Function Calling to normalize unstructured coupon data." }
-                ],
-                stack: ["Laravel", "Vue.js", "Python", "Google Pub/Sub", "OpenAI API"]
-            },
-            {
-                id: 2,
-                role: "Software Engineer (Contract)",
-                company: "Sellergize (Remote)",
-                period: "Mar 2024 – Dec 2024",
-                type: "Contract",
-                icon: "⚙️",
-                stories: [
-                    { title: "The DevOps Transformation", desc: "Migrated 15+ repos from Gitea to GitHub. Replaced manual triggers with Webhooks & APIs, reducing release time from hours to 2 minutes." },
-                    { title: "Cloud Reliability", desc: "Automated backups for 8 GCP servers, achieving zero errors and saving ~1 hr/day." },
-                    { title: "Leadership", desc: "Mentored 4 juniors, conducting code reviews focused on injection safety." }
-                ],
-                stack: ["Webhooks/API", "GCP", "Selenium", "GitHub"]
-            },
-            {
-                id: 3,
-                role: "Product Engineer",
-                company: "Seclore (Mumbai)",
-                period: "Sep 2022 – Sep 2023",
-                type: "Full-time (Precision Execution)",
-                icon: "🔒",
-                stories: [
-                    { title: "Zero Critical Bugs", desc: "Championed TDD and used JUnit to achieve zero post-release bugs in a security-critical environment." },
-                    { title: "IP Geolocation Module", desc: "Built a Java Spring Boot MVC microservice using MaxMind MMDB for geo-restricted file access compliance. Deployed via Docker." },
-                    { title: "Build Optimization", desc: "Reduced build times from 1.5 days to 2 hours via automation scripts." }
-                ],
-                stack: ["Java Spring Boot", "Docker", "React.js", "TDD", "VAPT"]
-            },
-            {
-                id: 4,
-                role: "Software Developer",
-                company: "Sellergize (Mumbai)",
-                period: "Aug 2020 – Sep 2022",
-                type: "Full-time (Requirement-Based)",
-                icon: "💻",
-                stories: [
-                    { title: "300% Performance Boost", desc: "Re-architected core user panel using Vue.js and PHP REST APIs." },
-                    { title: "Database Engineering", desc: "Heavy usage of MySQL triggers, stored procedures, and my.ini optimization." },
-                    { title: "Revenue Impact", desc: "Developed 15+ WordPress plugins/features contributing to a 20% increase in client retention." }
-                ],
-                stack: ["PHP", "Vue.js", "MySQL", "WordPress"]
-            }
-        ];
-
-        const projectData = [
-            {
-                title: "IP Geolocation & Access Control",
-                category: "professional",
-                stack: ["Spring Boot", "MaxMind", "Docker"],
-                desc: "Built a core security module for Seclore to enforce geo-restricted file access compliance.",
-                secret: "Used MaxMind MMDB for high-speed offline resolution and an abstracted Repo layer for future-proofing.",
-                link: null
-            },
-            {
-                title: "Academic Git Monitoring System",
-                category: "academic",
-                stack: ["PHP", "Vue.js", "OpenAI API", "MySQL"],
-                desc: "MSc Dissertation. A tool for professors to fairly evaluate student contributions.",
-                secret: "Used <strong>OpenAI Function Calling</strong> to solve AI hallucinations and force structured JSON output.",
-                link: "https://github.com/1289dhrupal/msc_project"
-            },
-            {
-                title: "Mobile Shopping App Backend",
-                category: "professional",
-                stack: ["Laravel", "Python", "Pub/Sub", "OpenAI"],
-                desc: "Sellergize. Architecture for a Gecko-based browser app.",
-                secret: "Built a crawling layer with Selenium and an AI Normalization layer to parse unstructured coupon text.",
-                link: null
-            },
-            {
-                title: "Anti-Theft Android Model",
-                category: "academic",
-                stack: ["Android", "ML", "SVM-RBF"],
-                desc: "Research Paper published in ITM Web of Conferences.",
-                secret: "Hybrid model using ML for detection (0.76 Accuracy) and SMS for remote access functionality.",
-                link: "https://doi.org/10.1051/itmconf/20203203021"
-            },
-            {
-                title: "Dairy Transaction System",
-                category: "freelance",
-                stack: ["Flutter", "PHP", "MySQL"],
-                desc: "Freelance Client. Full lifecycle development.",
-                secret: "Collaborated with a frontend dev; I built the PHP backend and handled minor Flutter fixes. Reduced processing time by 60%.",
-                link: null
-            },
-            {
-                title: "Hate Speech Detection",
-                category: "academic",
-                stack: ["Python", "ML"],
-                desc: "ML model classifying tweets as offensive/non-offensive.",
-                secret: "Achieved 85% accuracy using Python libraries.",
-                link: "https://colab.research.google.com/drive/1ZbkaEfmy_aQnsCiJcFYdJ987dpqk-wLM?usp=sharing"
-            },
-            {
-                title: "Blood Donation System",
-                category: "academic",
-                stack: ["PHP", "JS", "HTML"],
-                desc: "Multilingual platform to enhance donor appointment tracking.",
-                secret: "Live project focusing on accessibility.",
-                link: "https://bloodbanksddmo.herokuapp.com/"
-            },
-            {
-                title: "Mini Project (Angular)",
-                category: "learning",
-                stack: ["Angular"],
-                desc: "Self-taught project to learn framework fundamentals.",
-                secret: "Focused on components and data binding structure.",
-                link: null
-            }
-        ];
-
-        // --- CHARTS ---
-        window.addEventListener('DOMContentLoaded', () => {
-            // 1. Impact Chart (Bar)
-            const ctxImpact = document.getElementById('impactChart').getContext('2d');
-            new Chart(ctxImpact, {
-                type: 'bar',
-                data: {
-                    labels: ['Workflow Reduction', 'Perf. Boost', 'Build Time', 'Client Retention'],
-                    datasets: [{
-                        label: 'Improvement Percentage',
-                        data: [50, 300, 90, 20],
-                        backgroundColor: [
-                            'rgba(37, 99, 235, 0.7)',  // Blue
-                            'rgba(16, 185, 129, 0.7)', // Emerald
-                            'rgba(147, 51, 234, 0.7)', // Purple
-                            'rgba(245, 158, 11, 0.7)'  // Amber
-                        ],
-                        borderWidth: 0,
-                        borderRadius: 6
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        y: { beginAtZero: true, grid: { display: true, color: '#f1f5f9' } },
-                        x: { grid: { display: false } }
-                    }
-                }
-            });
-
-            // 2. Skills Radar
-            const ctxSkills = document.getElementById('skillsRadar').getContext('2d');
-            new Chart(ctxSkills, {
-                type: 'radar',
-                data: {
-                    labels: ['Backend (PHP)', 'Database', 'Frontend', 'DevOps', 'AI Integration', 'Leadership'],
-                    datasets: [{
-                        label: 'Proficiency Level',
-                        data: [95, 90, 75, 80, 85, 80],
-                        fill: true,
-                        backgroundColor: 'rgba(37, 99, 235, 0.2)',
-                        borderColor: 'rgb(37, 99, 235)',
-                        pointBackgroundColor: 'rgb(37, 99, 235)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgb(37, 99, 235)'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        r: {
-                            angleLines: { color: '#e2e8f0' },
-                            grid: { color: '#e2e8f0' },
-                            suggestedMin: 0,
-                            suggestedMax: 100,
-                            ticks: { display: false }
-                        }
-                    },
-                    plugins: { legend: { display: false } }
-                }
-            });
-
-            // Initial Renders
-            renderTimeline();
-            renderProjects('all');
-            
-            // Select first role by default
-            selectRole(0);
-        });
-
-        // --- EXPERIENCE LOGIC ---
-        function renderTimeline() {
-            const container = document.getElementById('role-list');
-            experienceData.forEach((role, index) => {
-                const item = document.createElement('div');
-                item.className = `relative pl-12 py-4 cursor-pointer group`;
-                item.onclick = () => selectRole(index);
-                item.innerHTML = `
-                    <div class="absolute left-[15px] top-5 w-5 h-5 bg-white border-4 border-slate-300 rounded-full group-hover:border-blue-500 transition-colors z-10 role-dot" id="dot-${index}"></div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 group-hover:border-blue-400 group-hover:shadow-md transition-all">
-                        <div class="flex items-center justify-between mb-1">
-                            <span class="text-xs font-bold text-blue-600 uppercase tracking-wide">${role.period}</span>
-                            <span class="text-xl">${role.icon}</span>
-                        </div>
-                        <h3 class="font-bold text-slate-800">${role.role}</h3>
-                        <p class="text-sm text-slate-500">${role.company}</p>
-                    </div>
-                `;
-                container.appendChild(item);
-            });
-        }
-
-        function selectRole(index) {
-            // Update dots
-            document.querySelectorAll('.role-dot').forEach((d, i) => {
-                d.classList.remove('border-blue-600');
-                d.classList.add('border-slate-300');
-                if (i === index) {
-                    d.classList.remove('border-slate-300');
-                    d.classList.add('border-blue-600');
-                }
-            });
-
-            // Update Panel
-            const role = experienceData[index];
-            const panel = document.getElementById('role-detail-panel');
-            
-            let storiesHtml = role.stories.map(s => `
-                <div class="mb-4 pb-4 border-b border-slate-100 last:border-0">
-                    <h4 class="font-bold text-slate-800 text-sm mb-1">🔹 ${s.title}</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed">${s.desc}</p>
-                </div>
-            `).join('');
-
-            let stackHtml = role.stack.map(tech => 
-                `<span class="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs font-medium mr-2 mb-2 inline-block border border-slate-200">${tech}</span>`
-            ).join('');
-
-            panel.innerHTML = `
-                <div class="animate-fadeIn">
-                    <div class="flex items-start justify-between mb-6">
-                        <div>
-                            <h3 class="text-2xl font-bold text-slate-900">${role.role}</h3>
-                            <p class="text-lg text-blue-600 font-medium">${role.company}</p>
-                        </div>
-                        <span class="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold uppercase rounded-full tracking-wider border border-blue-100">${role.type}</span>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Deep Dive Stories</h4>
-                        <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
-                            ${storiesHtml}
-                        </div>
-                    </div>
-
-                    <div>
-                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Tech Stack</h4>
-                        <div class="flex flex-wrap">
-                            ${stackHtml}
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        // --- PROJECT LOGIC ---
-        function renderProjects(filter) {
-            const grid = document.getElementById('projects-grid');
-            grid.innerHTML = '';
-            
-            const filtered = filter === 'all' ? projectData : projectData.filter(p => p.category === filter);
-
-            filtered.forEach(p => {
-                const card = document.createElement('div');
-                card.className = "bg-white rounded-xl shadow-sm border border-slate-200 p-6 card-hover flex flex-col h-full";
-                
-                const stackTags = p.stack.map(s => `<span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded mr-1">${s}</span>`).join('');
-                
-                const linkHtml = p.link 
-                    ? `<a href="${p.link}" target="_blank" class="text-sm font-semibold text-blue-600 hover:underline flex items-center mt-auto">View Project <span class="ml-1">→</span></a>` 
-                    : `<span class="text-sm text-slate-400 italic mt-auto">Internal Project</span>`;
-
-                card.innerHTML = `
-                    <div class="mb-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">${p.category}</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">${p.title}</h3>
-                        <p class="text-sm text-slate-600 mb-4 line-clamp-3">${p.desc}</p>
-                        
-                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 mb-4">
-                            <p class="text-xs text-amber-900"><strong>💡 Key Highlight:</strong> ${p.secret}</p>
-                        </div>
-                    </div>
-                    <div class="mt-auto">
-                        <div class="mb-4 flex flex-wrap gap-1">${stackTags}</div>
-                        ${linkHtml}
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-
-            // Update button styles
-            document.querySelectorAll('.project-filter').forEach(btn => {
-                if(btn.textContent.toLowerCase().includes(filter) || (filter === 'all' && btn.textContent === 'All')) {
-                    btn.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
-                    btn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
-                } else {
-                    btn.classList.remove('bg-blue-600', 'text-white', 'border-blue-600');
-                    btn.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
-                }
-            });
-        }
-
-        function filterProjects(category) {
-            renderProjects(category);
-        }
-
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
+    <!-- Load Data and Main Script -->
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>System Architecture | Process Flow</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc;
+        color: #1e293b;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      #diagram-container {
+        position: relative;
+        flex-grow: 1;
+        width: 100%;
+        max-width: 1200px;
+        margin: 10px auto 20px auto;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+      }
+
+      canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      #tooltip {
+        position: absolute;
+        background: rgba(15, 23, 42, 0.95);
+        color: white;
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-size: 13px;
+        line-height: 1.4;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.15s;
+        z-index: 100;
+        max-width: 280px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        font-family: "Inter", sans-serif;
+      }
+
+      .controls {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        padding: 8px;
+        border-radius: 99px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e2e8f0;
+        display: flex;
+        gap: 8px;
+        z-index: 50;
+      }
+
+      .step-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid #e2e8f0;
+        background: #f8fafc;
+        color: #64748b;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Inter", sans-serif;
+      }
+
+      .step-btn:hover {
+        background: #f1f5f9;
+        transform: translateY(-2px);
+        border-color: #cbd5e1;
+      }
+      .step-btn.active {
+        background: #0f172a;
+        color: white;
+        border-color: #0f172a;
+        transform: scale(1.1);
+      }
+
+      .action-btn {
+        padding: 0 20px;
+        border-radius: 99px;
+        font-size: 13px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      #reset-btn {
+        background: #ef4444;
+        color: white;
+        margin-left: 8px;
+      }
+      #reset-btn:hover {
+        background: #dc2626;
+      }
+
+      #legend-btn {
+        background: #e2e8f0;
+        color: #475569;
+      }
+      #legend-btn:hover {
+        background: #cbd5e1;
+      }
+
+      /* Expanded Info Panel */
+      #info-panel {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: rgba(255, 255, 255, 0.98);
+        padding: 16px 20px;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(8px);
+        max-width: 320px;
+        transition: opacity 0.3s, transform 0.3s;
+        opacity: 0;
+        transform: translateY(-10px);
+        font-family: "Inter", sans-serif;
+        pointer-events: none;
+      }
+      #info-panel.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .sub-step-list {
+        margin-top: 8px;
+        font-size: 12px;
+        color: #64748b;
+      }
+      .sub-step-list li {
+        margin-bottom: 4px;
+        padding-left: 12px;
+        position: relative;
+      }
+      .sub-step-list li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #94a3b8;
+      }
+      .sub-step-badge {
+        font-weight: 700;
+        color: #334155;
+        margin-right: 4px;
+      }
+
+      /* Legend Modal */
+      #legend-modal {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        bottom: 80px;
+        width: 300px;
+        background: rgba(255, 255, 255, 0.98);
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        z-index: 60;
+        display: flex;
+        flex-direction: column;
+        transform: translateX(350px);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(8px);
+      }
+      #legend-modal.open {
+        transform: translateX(0);
+      }
+
+      .legend-content {
+        overflow-y: auto;
+        flex: 1;
+        padding: 16px;
+      }
+      .legend-item {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 12px;
+        font-size: 12px;
+        align-items: start;
+      }
+      .code-badge {
+        background: #0f172a;
+        color: white;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 10px;
+        min-width: 30px;
+        text-align: center;
+      }
+
+      .legend-content::-webkit-scrollbar {
+        width: 4px;
+      }
+      .legend-content::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 2px;
+      }
+    </style>
+  </head>
+  <body class="p-4">
+    <div class="text-center mb-2 mt-2">
+      <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">
+        System Architecture
+      </h1>
+      <p class="text-slate-500 text-sm font-medium">
+        Interactive Data Lifecycle Map
+      </p>
+    </div>
+
+    <div id="diagram-container">
+      <div id="tooltip"></div>
+
+      <div id="info-panel">
+        <h3
+          id="step-title"
+          class="font-bold text-slate-800 text-base mb-2"
+        ></h3>
+        <div id="step-desc"></div>
+      </div>
+
+      <div id="legend-modal">
+        <div
+          class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50 rounded-t-12"
+        >
+          <h3 class="font-bold text-slate-800 text-sm">Flow Key</h3>
+          <button
+            onclick="toggleLegend()"
+            class="text-slate-400 hover:text-slate-600 text-lg"
+          >
+            &times;
+          </button>
+        </div>
+        <div class="legend-content">
+          <div class="legend-item">
+            <span class="code-badge bg-emerald-600">0</span>
+            <span class="text-slate-600">Sync Stores</span>
+          </div>
+          <div class="legend-item">
+            <span class="code-badge bg-blue-600">1</span>
+            <span class="text-slate-600">Creation Loop</span>
+          </div>
+          <div class="legend-item">
+            <span class="code-badge bg-cyan-600">2</span>
+            <span class="text-slate-600">Crawling Execution</span>
+          </div>
+          <div class="legend-item">
+            <span class="code-badge bg-slate-500">3</span>
+            <span class="text-slate-600">Backend Processing</span>
+          </div>
+          <div class="legend-item">
+            <span class="code-badge bg-red-500">4</span>
+            <span class="text-slate-600">Human Verification</span>
+          </div>
+          <div class="legend-item">
+            <span class="code-badge bg-emerald-500">5</span>
+            <span class="text-slate-600">Publishing</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="step-btn" onclick="setStep(0)" title="Sync Stores">
+          0
+        </button>
+        <button class="step-btn" onclick="setStep(1)" title="Creation Flow">
+          1
+        </button>
+        <button class="step-btn" onclick="setStep(2)" title="Crawling">
+          2
+        </button>
+        <button class="step-btn" onclick="setStep(3)" title="Processing">
+          3
+        </button>
+        <button class="step-btn" onclick="setStep(4)" title="Verification">
+          4
+        </button>
+        <button class="step-btn" onclick="setStep(5)" title="Publishing">
+          5
+        </button>
+
+        <div class="h-6 w-px bg-slate-300 mx-2"></div>
+
+        <button id="legend-btn" class="action-btn" onclick="toggleLegend()">
+          Key
+        </button>
+        <button id="reset-btn" class="action-btn" onclick="clearStep()">
+          Reset
+        </button>
+      </div>
+
+      <canvas id="architectureCanvas"></canvas>
+    </div>
+
+    <script src="/assets/js/diagram.js"></script>
+
+    <script>
+      const steps = {
+        0: {
+          id: "unimind",
+          title: "0. Store Synchronization",
+          html: `
+            <p class="text-xs text-slate-500 mb-2">Ensures the system knows which stores to target.</p>
+            <ul class="sub-step-list">
+              <li><span class="sub-step-badge">0</span> Store Master syncs list to Main API.</li>
+            </ul>`
+        },
+        1: {
+          id: "crawlmate",
+          title: "1. Crawler Creation Loop",
+          html: `
+            <p class="text-xs text-slate-500 mb-2">Generates new crawler scripts dynamically.</p>
+            <ul class="sub-step-list">
+              <li><span class="sub-step-badge">1a</span> Generator requests store from API.</li>
+              <li><span class="sub-step-badge">1c</span> Generator fetches page DOM.</li>
+              <li><span class="sub-step-badge">1d-1f</span> API proxies DOM to AI Brain to identify CSS selectors.</li>
+              <li><span class="sub-step-badge">1i</span> Generator creates script & pushes to Git.</li>
+            </ul>`
+        },
+        2: {
+          id: "runners",
+          title: "2. Crawling Execution",
+          html: `
+            <p class="text-xs text-slate-500 mb-2">Runs the scripts to fetch raw coupons.</p>
+            <ul class="sub-step-list">
+              <li><span class="sub-step-badge">2a</span> Runners ask API for tasks.</li>
+              <li><span class="sub-step-badge">2c</span> Runners pull latest code from Git.</li>
+              <li><span class="sub-step-badge">2e</span> Runners submit raw data to API.</li>
+              <li><span class="sub-step-badge">2f</span> API stores raw data in DB.</li>
+              <li><span class="sub-step-badge">2.1</span> Workers trigger Headless browsers (optional).</li>
+            </ul>`
+        },
+        3: {
+          id: "workers",
+          title: "3. Backend Processing",
+          html: `
+            <p class="text-xs text-slate-500 mb-2">Asynchronous cleaning and logic pipeline.</p>
+            <ul class="sub-step-list">
+              <li><span class="sub-step-badge">3a</span> Workers poll DB for 'Pending' items.</li>
+              <li><span class="sub-step-badge">3b</span> Workers apply regex logic cleaning.</li>
+              <li><span class="sub-step-badge">3c</span> If complex, send to AI Brain.</li>
+              <li><span class="sub-step-badge">3e</span> Save status to DB (Verified or Needs Human).</li>
+            </ul>`
+        },
+        4: {
+          id: "editor",
+          title: "4. Human Verification",
+          html: `
+            <p class="text-xs text-slate-500 mb-2">Manual intervention for edge cases.</p>
+            <ul class="sub-step-list">
+              <li><span class="sub-step-badge">4a</span> Editor fetches 'Human Needed' items.</li>
+              <li><span class="sub-step-badge">4b</span> API queries DB for details.</li>
+              <li><span class="sub-step-badge">4d</span> Editor submits corrections.</li>
+              <li><span class="sub-step-badge">4e</span> API saves final version to DB.</li>
+            </ul>`
+        },
+        5: {
+          id: "pubsub",
+          title: "5. Production Publishing",
+          html: `
+            <p class="text-xs text-slate-500 mb-2">Pushing live data to the world.</p>
+            <ul class="sub-step-list">
+              <li><span class="sub-step-badge">5a</span> Workers poll for 'Done' status.</li>
+              <li><span class="sub-step-badge">5b</span> Publish validated coupon to Data Stream.</li>
+            </ul>`
+        }
+      };
+
+      function setStep(stepNum) {
+        const stepData = steps[stepNum];
+        if (!stepData) return;
+
+        activeNodeId = stepData.id;
+        focusOnFlow();
+
+        document.querySelectorAll(".step-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        document.querySelectorAll(".step-btn")[stepNum].classList.add("active");
+
+        const panel = document.getElementById("info-panel");
+        document.getElementById("step-title").innerText = stepData.title;
+        document.getElementById("step-desc").innerHTML = stepData.html;
+        panel.classList.add("visible");
+      }
+
+      function clearStep() {
+        resetView();
+        document
+          .querySelectorAll(".step-btn")
+          .forEach((b) => b.classList.remove("active"));
+        document.getElementById("info-panel").classList.remove("visible");
+        document.getElementById("legend-modal").classList.remove("open");
+      }
+
+      function toggleLegend() {
+        document.getElementById("legend-modal").classList.toggle("open");
+      }
+    </script>
+  </body>
+</html>
