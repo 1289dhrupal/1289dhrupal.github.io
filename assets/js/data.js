@@ -68,29 +68,31 @@ const experienceData = [
         icon: "🚀",
         stories: [
             { title: "50% Workflow Reduction", desc: "Designed a Laravel admin panel automating manual data entry, saving ~40 hours/month." },
-            { title: "Scalable Streaming", desc: "Integrated Google Pub/Sub for real-time data streaming." },
-            {
-                title: "Backend Architecture",
-                desc: "Led the backend design for a mobile shopping platform. Built a crawling layer using Selenium/Python to scrape coupon sites securely. Implemented an AI parsing engine that sends DOM elements to OpenAI to identify CSS selectors, normalizing unstructured data (like 'valid for 7 days') into structured formats. Designed a human-verification loop via Pub/Sub for edge cases and integrated a central store intelligence system for popularity metrics."
-            }
-        ],
-        stack: ["Laravel", "Vue.js", "Python", "Google Pub/Sub", "OpenAI API"]
-    },
-    {
-        id: 2,
-        role: "Software Engineer (Contract)",
-        company: "Sellergize (Remote)",
-        period: "Mar 2024 – Dec 2024",
-        type: "Contract",
-        focus: "Focus: Infrastructure",
-        typeColor: "bg-amber-100 text-amber-700",
-        icon: "⚙️",
-        stories: [
-            { title: "The DevOps Transformation", desc: "Migrated 15+ repos from Gitea to GitHub. Replaced manual triggers with <strong>Webhooks & APIs</strong>, reducing release time from hours to 2 minutes." },
+            // { title: "Scalable Streaming", desc: "Integrated Google Pub/Sub for real-time data streaming." },
+            // {
+            //     title: "Backend Architecture",
+            //     desc: "Led the backend design for a mobile shopping platform. Built a crawling layer using Selenium/Python to scrape coupon sites securely. Implemented an AI parsing engine that sends DOM elements to OpenAI to identify CSS selectors, normalizing unstructured data into structured formats. Integrated a central store intelligence system for popularity metrics."
+            // },
+            //     ],
+            //     stack: ["Laravel", "Vue.js", "Python", "Google Pub/Sub", "OpenAI API"]
+            // },
+            // {
+            //     id: 2,
+            //     role: "Software Engineer (Contract)",
+            //     company: "Sellergize (Remote)",
+            //     period: "Mar 2024 – Dec 2024",
+            //     type: "Contract",
+            //     focus: "Focus: Infrastructure",
+            //     typeColor: "bg-amber-100 text-amber-700",
+            //     icon: "⚙️",
+            //     stories: [
+            { title: "The DevOps Transformation", desc: "Replaced manual triggers with <strong>Webhooks & APIs</strong>, reducing release time from hours to 2 minutes." },
             { title: "Cloud Reliability", desc: "Automated backups for 8 GCP servers, achieving zero errors and saving ~1 hr/day." },
             { title: "Leadership", desc: "Mentored 4 juniors, conducting code reviews focused on injection safety." }
         ],
-        stack: ["Webhooks/API", "GCP", "Selenium", "GitHub"]
+        // stack: ["Laravel", "Vue.js", "Python", "Google Pub/Sub", "OpenAI API"]
+        // stack: ["Webhooks/API", "GCP", "Selenium", "GitHub"]
+        stack: ["Laravel", "Vue.js", "Python", "Google Pub/Sub", "OpenAI API", "Webhooks/API", "GCP", "Selenium", "GitHub"]
     },
     {
         id: 3,
@@ -124,21 +126,21 @@ const experienceData = [
         ],
         stack: ["PHP", "Vue.js", "MySQL", "WordPress"]
     },
-    {
-        id: 5,
-        role: "Project Trainee (Internship)",
-        company: "Trivia Softwares (Mumbai)",
-        period: "Jun 2019 – Aug 2019",
-        type: "Internship",
-        focus: "Focus: Waterfall SDLC",
-        typeColor: "bg-slate-100 text-slate-600",
-        icon: "🎓",
-        stories: [
-            { title: "Java Foundations", desc: "Developed a Student Management System using Java SE 11, learning core OOP principles." },
-            { title: "SDLC", desc: "Gained practical experience working within a Waterfall development lifecycle." }
-        ],
-        stack: ["Java SE 11", "Waterfall", "MySQL"]
-    }
+    // {
+    //     id: 5,
+    //     role: "Project Trainee (Internship)",
+    //     company: "Trivia Softwares (Mumbai)",
+    //     period: "Jun 2019 – Aug 2019",
+    //     type: "Internship",
+    //     focus: "Focus: Waterfall SDLC",
+    //     typeColor: "bg-slate-100 text-slate-600",
+    //     icon: "🎓",
+    //     stories: [
+    //         { title: "Java Foundations", desc: "Developed a Student Management System using Java SE 11, learning core OOP principles." },
+    //         { title: "SDLC", desc: "Gained practical experience working within a Waterfall development lifecycle." }
+    //     ],
+    //     stack: ["Java SE 11", "Waterfall", "MySQL"]
+    // }
 ];
 
 // --- PROJECT DATA ---
